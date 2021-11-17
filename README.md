@@ -3,12 +3,12 @@ Reading materials introducing various crypto concepts.
 Reach out to [crypto-research@jumptrading.com](mailto:crypto-research@jumptrading.com) for any suggestions/feedback
 (or feel free to open a PR here).
 
-## Bitcoin mechanics
-Although most of the activity crypto is no longer Bitcoin, understanding Bitcoin
-would help the reader understand concepts that followed.
+## Blockchain mechanics & Innovations
 * [Bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf) (Satoshi Nakomoto, 2009)
 * [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/) (Michael Nielsen, 2013) - 
   describing Bitcoin's mechanics, building it up from first principles
+* [Ethereum whitepaper](https://ethereum.org/en/whitepaper/) Building on bitcoin to get smartcontracts.
+* [Tendermint: Byzantine Fault Tolerance](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf) Overview of byzantine fault tolerant algorithms and how proof of stake chains can work.
 
 ## Why is crypto important?
 * [Bitcoin for the open-minded skeptic](https://www.matthuang.com/bitcoin_for_the_open_minded_skeptic) (Matt Huang, 2020)
