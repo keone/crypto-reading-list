@@ -27,7 +27,7 @@ We've also included some child pages with more topic-specific information at the
   noted researcher Hasu weighing in on the merits of protocol tokens during a time when many cynics questioned the need for each project to have its own token
 
 # DeFi primitives
-_In-depth page: [DeFi.md](DeFi.md)_
+_In-depth page: [DeFi](DeFi.md)_
 * [A beginner's guide to DeFi](https://nakamoto.com/beginners-guide-to-defi/) (Linda Xie, Jan 2020)
 * [AMMs](https://medium.com/dragonfly-research/what-explains-the-rise-of-amms-7d008af1c399) - 
   explaining the mechanics of the constant-product AMM popularized by Uniswap V2
@@ -40,23 +40,18 @@ _In-depth page: [DeFi.md](DeFi.md)_
   explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
 
 # NFTs/Digital identity/Digital ownership
-_In-depth page: [NFT.md](NFT.md)_
+_In-depth page: [NFT](NFT.md)_
   
 # DAOs
-_In-depth page: [DAO.md](DAO.md)_
+_In-depth page: [DAO](DAO.md)_
 * [Beginner's guide to DAOs](https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o) - 
   (Mar 2021) Linda Xie provides examples of what DAOs can do (e.g. shared ownership of a valuable asset, governance)
 * [The DAO of DAOs](https://www.notboring.co/p/the-dao-of-daos-5b9)
 
 # L1s
-_In-depth page: [L1.md](L1.md)_
-## Solana
-* [Solana Validator 101: transaction processing](https://jito-labs.medium.com/solana-validator-101-transaction-processing-90bcdc271143)
-* [Solana Programming (the "escrow tutorial")](https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/) -
-  the canonical tutorial on Solana programming by building up an escrow contract.  Warning: somewhat out of date
+_In-depth page: [L1](L1.md)_
 
 # L2s
-## Rollups
 * [Eth docs on L2 Rollups](https://ethereum.org/en/developers/docs/scaling/layer-2-rollups/) - see the bottom of this page for further links
 * [Optimistic rollups: Arbitrum vs Optimism](https://insights.deribit.com/market-research/making-sense-of-rollups-part-2-dispute-resolution-on-arbitrum-and-optimism/)
 * [Optimistic rollups vs ZK-rollups](https://limechain.tech/blog/optimistic-rollups-vs-zk-rollups/) - 
@@ -64,26 +59,31 @@ _In-depth page: [L1.md](L1.md)_
 * [Vitalik's post on rollups](https://vitalik.ca/general/2021/01/05/rollup.html) - a fairly technical summary of the SOTW of rollups
 * [ZK-STARKS](https://docs.ethhub.io/ethereum-roadmap/layer-2-scaling/zk-starks/)
 
+# Trading mechanics
+_In-depth page: [Trading](Trading.md)_
+
+_In-depth page: [MEV/Arbitrage](MEV.md)_
+
+
 # Tools/Analytics
 * [Dune Analytics](https://dune.xyz/) - analytics platform for Ethereum, featuring various datasets built from processing blockchain data
 * [Nansen](https://nansen.ai/) - wallet analytics (coin movements, large holders, big transactions, etc) for Ethereum.  Also some NFT tools.
 
 # Directories
-* [Pentacle](https://pentacle.ai/): directory of Ethereum, Solana, and NFT projects
-* [Terra projects](https://terra.smartstake.io/projects)
-
-# Other Lists
 * [Skill tree](https://thedailyape.notion.site/Skill-Tree-f5d7691421024090b66f9b07f7384314) - 
   Darren Lau's minimal list of things to learn about crypto
 * [The Daily Ape - directory](https://thedailyape.notion.site/thedailyape/Directory-c96c0b6727c0433a962e897ef43efb7e) -
   Darren Lau's excellent categorical directory
+* [Pentacle](https://pentacle.ai/): directory of Ethereum, Solana, and NFT projects
+* [Terra projects](https://terra.smartstake.io/projects)
 
 # Online courses
 * [Berkeley DeFi](https://berkeley-defi.github.io/f21)
 
 # Special Topics (Child Pages)
+* [DAO](DAO.md)
 * [DeFi](DeFi.md)
-* [NFTs](NFT.md)
-* [DAOs](DAO.md)
-* [L1s](L1.md)
+* [L1](L1.md)
 * [MEV](MEV.md)
+* [NFT](NFT.md)
+* [Trading](Trading.md)
