@@ -4,15 +4,14 @@ Crypto changes quickly, also we're also not always right; please
 reach out to [crypto-research@jumptrading.com](mailto:crypto-research@jumptrading.com)
 to report any errors or suggestions (or feel free to open a PR here).
 
-The below contains a minimal set of references for coming up to speed on crypto and decentralization.
-
+The below contains what we consider essential reading for coming up to speed on crypto and decentralization. 
 We've also included some child pages with more topic-specific information at the bottom of this page.
 
 # Blockchain mechanics & Innovations
-* [Bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf) (Satoshi Nakomoto, 2009)
-* [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/) (Michael Nielsen, 2013) - 
+* [Bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf) (2009)
+* [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/) (2013) - 
   describing Bitcoin's mechanics, building it up from first principles
-* [Ethereum whitepaper](https://ethereum.org/en/whitepaper/) Building on bitcoin to get smartcontracts.
+* [Ethereum whitepaper](https://ethereum.org/en/whitepaper/) - building on bitcoin to get smartcontracts; also a good explanation of _Bitcoin_
 * [Tendermint: Byzantine Fault Tolerance](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf) Overview of byzantine fault tolerant algorithms and how proof of stake chains can work.
 
 # Why is crypto important?
@@ -28,17 +27,29 @@ We've also included some child pages with more topic-specific information at the
   noted researcher Hasu weighing in on the merits of protocol tokens during a time when many cynics questioned the need for each project to have its own token
 
 # DeFi primitives
+_In-depth page: [DeFi.md](DeFi.md)_
+* [A beginner's guide to DeFi](https://nakamoto.com/beginners-guide-to-defi/) (Linda Xie, Jan 2020)
 * [AMMs](https://medium.com/dragonfly-research/what-explains-the-rise-of-amms-7d008af1c399) - 
   explaining the mechanics of the constant-product AMM popularized by Uniswap V2
-* [StableSwap AMMs](https://berkeley-defi.github.io/assets/material/StableSwap.pdf) -
-  explaining another AMM formulation used in prominent stableswaps such as Curve (Eth) and Saber (Solana)
+* [StableSwap AMMs](https://curve.fi/files/stableswap-paper.pdf) (2019) -
+  explaining another AMM formulation for stable pairs of assets, pioneered by Curve.fi
 * [Bridges](https://blog.makerdao.com/what-are-blockchain-bridges-and-why-are-they-important-for-defi/)
 * [Uniswap V3 whitepaper](https://uniswap.org/whitepaper-v3.pdf) -
   explaining the 'concentrated liquidity' innovation in UniswapV3
 * [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/) - 
   explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
+
+# NFTs/Digital identity/Digital ownership
+_In-depth page: [NFT.md](NFT.md)_
   
+# DAOs
+_In-depth page: [DAO.md](DAO.md)_
+* [Beginner's guide to DAOs](https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o) - 
+  (Mar 2021) Linda Xie provides examples of what DAOs can do (e.g. shared ownership of a valuable asset, governance)
+* [The DAO of DAOs](https://www.notboring.co/p/the-dao-of-daos-5b9)
+
 # L1s
+_In-depth page: [L1.md](L1.md)_
 ## Solana
 * [Solana Validator 101: transaction processing](https://jito-labs.medium.com/solana-validator-101-transaction-processing-90bcdc271143)
 * [Solana Programming (the "escrow tutorial")](https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/) -
@@ -72,5 +83,7 @@ We've also included some child pages with more topic-specific information at the
 
 # Special Topics (Child Pages)
 * [DeFi](DeFi.md)
+* [NFTs](NFT.md)
+* [DAOs](DAO.md)
 * [L1s](L1.md)
 * [MEV](MEV.md)
