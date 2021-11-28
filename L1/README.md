@@ -1,21 +1,21 @@
 # L1 Details
 
+## Child pages
+* [Ethereum](Ethereum.md)
+* [Solana](Solana.md)
+* [Terra](Terra.md)
+
 ## Bitcoin
 * [On bitcoin and simultaneous block discovery](https://insights.deribit.com/market-research/was-there-a-bitcoin-double-spend-on-jan-20-2021/)
+* [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook) (Andreas Antonopoulos, 2018) - 
+  a book on the technicals of bitcoin, published by O'Reilly but available for free on github.
 
 ## Ethereum
-* [EIP-1559 Analysis](https://insights.deribit.com/market-research/analysis-of-eip-1559/) (June 2020) - 
-  EIP-1559 was a major UX change to how Ethereum would set gas price.  At the time there was much 
-  debate about whether miners would accept these changes which would reduce their revenue.  Hasu and 
-  Georgios correctly predicted the result (see also 
-  [this article](https://insights.deribit.com/market-research/miners-will-accept-eip-1559-here-is-why/))
-* [ETH investment thesis](https://vineyardholdings.net/2021/07/31/ethereum/) (Jul 2021) - 
-  evaluating ETH as we would value a high-growth tech company, with a lot of helpful links to other articles
+_In-depth page: [Ethereum](Ethereum.md)
 
 ## Solana
+_In-depth page: [Solana](Solana.md)
 * [Solana Validator 101: transaction processing](https://jito-labs.medium.com/solana-validator-101-transaction-processing-90bcdc271143)
-* [Solana Programming (the "escrow tutorial")](https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/) -
-  the canonical tutorial on Solana programming by building up an escrow contract.  Warning: somewhat out of date
 
 ## Tendermint (Cosmos)
 * [Cosmos whitepaper](https://v1.cosmos.network/resources/whitepaper) (2016) -

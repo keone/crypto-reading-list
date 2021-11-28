@@ -51,9 +51,10 @@ _In-depth page: [DAO](DAO.md)_
 * [The DAO of DAOs](https://www.notboring.co/p/the-dao-of-daos-5b9)
 
 # L1s
-_In-depth page: [L1](L1.md)_
+_In-depth page: [L1](L1)_
 
 # L2s
+_In-depth page: [L2](L2.md)_
 * [Eth docs on L2 Rollups](https://ethereum.org/en/developers/docs/scaling/layer-2-rollups/) - see the bottom of this page for further links
 * [Optimistic rollups: Arbitrum vs Optimism](https://insights.deribit.com/market-research/making-sense-of-rollups-part-2-dispute-resolution-on-arbitrum-and-optimism/)
 * [Optimistic rollups vs ZK-rollups](https://limechain.tech/blog/optimistic-rollups-vs-zk-rollups/) -
@@ -68,8 +69,7 @@ _In-depth page: [MEV/Arbitrage](MEV.md)_
 
 
 # Tools/Analytics
-* [Dune Analytics](https://dune.xyz/) - analytics platform for Ethereum, featuring various datasets built from processing blockchain data
-* [Nansen](https://nansen.ai/) - wallet analytics (coin movements, large holders, big transactions, etc) for Ethereum.  Also some NFT tools.
+_In-depth page: [Tools](Tools.md)_
 
 # Directories
 * [Skill tree](https://thedailyape.notion.site/Skill-Tree-f5d7691421024090b66f9b07f7384314) -
@@ -77,7 +77,7 @@ _In-depth page: [MEV/Arbitrage](MEV.md)_
 * [The Daily Ape - directory](https://thedailyape.notion.site/thedailyape/Directory-c96c0b6727c0433a962e897ef43efb7e) -
   Darren Lau's excellent categorical directory
 * [Pentacle](https://pentacle.ai/): directory of Ethereum, Solana, and NFT projects
-* [Terra projects](https://terra.smartstake.io/projects)
+* [Everest.link](https://everest.link/) - project registry
 
 # Online courses
 * [Berkeley DeFi](https://berkeley-defi.github.io/f21)
@@ -85,7 +85,7 @@ _In-depth page: [MEV/Arbitrage](MEV.md)_
 # Special Topics (Child Pages)
 * [DAO](DAO.md)
 * [DeFi](DeFi.md)
-* [L1](L1.md)
+* [L1](L1)
 * [MEV](MEV.md)
 * [NFT](NFT.md)
 * [Trading](Trading.md)
