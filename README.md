@@ -1,15 +1,30 @@
-Jump Crypto's list of recommended reading materials introducing various crypto concepts.
+crypto reading list
+====================
+A curated list for getting up to speed on crypto and decentralized networks.
 
-The content on this particular page contains what we consider essential reading
-for coming up to speed on crypto and decentralized networks.  We've also included
-some child pages with deeper, topic-specific information to review afterward.
+The content on the toplevel page contains what we consider essential reading.
+Child pages contain deeper, topic-specific information to review afterward.
 
-_Disclaimers:_
-* Crypto changes quickly, also we're also not always right; please
+Crypto changes quickly, also we make mistakes! Please open a PR here or
 reach out to [crypto-research@jumptrading.com](mailto:crypto-research@jumptrading.com)
-to report any errors or suggestions (or feel free to open a PR here).
-* Nothing in this repo constitutes financial or legal advice.  Do your own research and
-  develop your own conclusions.
+to report any errors or suggestions.
+
+_Nothing in this repo constitutes financial or legal advice.  Do your own research and
+develop your own conclusions._
+
+Contents
+=========
+* [Why is crypto important?](#why-is-crypto-important)
+* [Blockchain mechanics & innovations](#blockchain-mechanics--innovations)
+* [DeFi primitives](#defi-primitives)
+* [NFTs & digital identity](#nfts--digital-identity)
+* [DAOs](#daos)
+* [L1s](#l1s)
+* [L2s](#l2s)
+* [Trading mechanics](#trading-mechanics)
+* [Tools/Analytics](#toolsanalytics)
+* [Directories](#directories)
+* [Online courses](#online-courses)
 
 
 Why is crypto important?
@@ -49,7 +64,7 @@ _In-depth page: [DeFi](DeFi.md)_
 * [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/) -
   explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
 
-NFTs/Digital identity/Digital ownership
+NFTs & digital identity
 ===========================
 _In-depth page: [NFT](NFT.md)_
 * [NFTs and a Thousand True Fans](https://future.a16z.com/nfts-thousand-true-fans/) (Chris Dixon, Feb 2021) -
@@ -91,6 +106,7 @@ _In-depth page: [Tools](Tools.md)_
 
 Directories
 ===============
+_In-depth page: [Other Lists](OtherLists.md)_
 * [Skill tree](https://thedailyape.notion.site/Skill-Tree-f5d7691421024090b66f9b07f7384314) -
   Darren Lau's minimal list of things to learn about crypto
 * [The Daily Ape - directory](https://thedailyape.notion.site/thedailyape/Directory-c96c0b6727c0433a962e897ef43efb7e) -
@@ -102,16 +118,3 @@ Directories
 Online courses
 ===============
 * [Berkeley DeFi](https://berkeley-defi.github.io/f21)
-
-
-Special Topics (Child Pages)
-==============================
-* [DAO](DAO.md)
-* [DeFi](DeFi.md)
-* [L1](L1)
-* [L2](L2.md)
-* [MEV](MEV.md)
-* [NFT](NFT.md)
-* [Regulatory](Regulatory.md)
-* [Trading Dynamics](TradingDynamics.md)
-* [Other Lists](OtherLists.md), which served as partial inspiration for this repo
