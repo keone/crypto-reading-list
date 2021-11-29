@@ -11,6 +11,12 @@ for suggestions or to report errors._
 * [UniV3 Simulator](https://defi-lab.xyz/uniswapv3simulator)
 
 ## Stablecoins
+* [Stablecoin Overview](https://www.youtube.com/watch?v=0XB_2O6FsIk) - a general overview of the stablecoin landscape and key differentiators for categorization
+* [MakerDao Whitepaper](https://makerdao.com/en/whitepaper/#abstract) - the original crypto-collateralized stablecoin 
+* [Terra Whitepaper](https://assets.website-files.com/611153e7af981472d8da199c/618b02d13e938ae1f8ad1e45_Terra_White_paper.pdf) 
+* [Black Thursday for MakerDao, An Explainer](https://medium.com/@whiterabbit_hq/black-thursday-for-makerdao-8-32-million-was-liquidated-for-0-dai-36b83cac56b6) - a general overview of MakerDao's Black Thursday event
+* [Deleverging Spirals and Stablecoins Attacks](https://arxiv.org/pdf/1906.02152.pdf) - a deep dive into deleveraging spirals, mempool attacks and an empirical investigation of MakerDao's Black Thursday event 
+* [The Iron Finance Exploit Explained](https://thedefiant.io/not-just-a-bank-run-new-evidence-shows-iron-finance-crashed-due-to-code-exploit/) 
 
 ## Insurance
 * [Nexus Mutual (NXM) whitepaper](https://nexusmutual.io/assets/docs/nmx_white_paperv2_3.pdf)
