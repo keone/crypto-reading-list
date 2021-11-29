@@ -1,3 +1,6 @@
+_Not financial or legal advice. Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
+for suggestions or to report errors._
+
 # Crypto Products
 * [Cartoon guide to perpetuals](https://www.paradigm.xyz/2021/03/the-cartoon-guide-to-perps/) (Dave White, Mar 2021) -
   a good explanation of perpetuals, the most popular crypto product in CEXes

@@ -1,3 +1,6 @@
+_Not financial or legal advice.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
+for suggestions or to report errors._
+
 # MEV
 
 MEV is a measure of the profit a block producer (miner, validator, etc) can make due to their ability to

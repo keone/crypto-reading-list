@@ -1,13 +1,19 @@
-Jump Crypto's list of reading materials introducing various crypto concepts.
+Jump Crypto's list of recommended reading materials introducing various crypto concepts.
 
-Crypto changes quickly, also we're also not always right; please
+The content on this particular page contains what we consider essential reading
+for coming up to speed on crypto and decentralized networks.  We've also included
+some child pages with deeper, topic-specific information to review afterward.
+
+_Disclaimers:_
+* Crypto changes quickly, also we're also not always right; please
 reach out to [crypto-research@jumptrading.com](mailto:crypto-research@jumptrading.com)
 to report any errors or suggestions (or feel free to open a PR here).
+* Nothing in this repo constitutes financial or legal advice.  Do your own research and
+  develop your own conclusions.
 
-The below contains what we consider essential reading for coming up to speed on crypto and decentralization.
-We've also included some child pages with more topic-specific information at the bottom of this page.
 
-# Why is crypto important?
+Why is crypto important?
+===========================
 * [Why decentralization matters](https://cdixon.org/2018/02/18/why-decentralization-matters) (Chris Dixon, 2018) -
   discusses the pattern of new technology progressing from innovation to extraction (from cooperation with their ecosystem to eventual competition),
   such as Apple initially encouraging developers to build on iOS, to now charging 30% on all in-store purchases.  Discusses how crypto solves this
@@ -19,7 +25,8 @@ We've also included some child pages with more topic-specific information at the
 * [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) -
   noted researcher Hasu weighing in on the merits of protocol tokens during a time when many cynics questioned the need for each project to have its own token
 
-# Blockchain mechanics & innovations
+Blockchain mechanics & innovations
+====================================
 * [Bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf) (2009)
 * [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/) (2013) -
   describing Bitcoin's mechanics, building it up from first principles
@@ -28,7 +35,8 @@ We've also included some child pages with more topic-specific information at the
 * [Tendermint: Byzantine Fault Tolerance](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf) -
   Overview of byzantine fault tolerant algorithms and how proof of stake chains can work.
 
-# DeFi primitives
+DeFi primitives
+===========================
 _In-depth page: [DeFi](DeFi.md)_
 * [A beginner's guide to DeFi](https://nakamoto.com/beginners-guide-to-defi/) (Linda Xie, Jan 2020)
 * [AMMs](https://medium.com/dragonfly-research/what-explains-the-rise-of-amms-7d008af1c399) -
@@ -41,19 +49,25 @@ _In-depth page: [DeFi](DeFi.md)_
 * [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/) -
   explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
 
-# NFTs/Digital identity/Digital ownership
+NFTs/Digital identity/Digital ownership
+===========================
 _In-depth page: [NFT](NFT.md)_
+* [NFTs and a Thousand True Fans](https://future.a16z.com/nfts-thousand-true-fans/) (Chris Dixon, Feb 2021) -
+  an argument for NFTs as enabling a better creator economy
 
-# DAOs
+DAOs
+===============
 _In-depth page: [DAO](DAO.md)_
 * [Beginner's guide to DAOs](https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o) -
   (Mar 2021) Linda Xie provides examples of what DAOs can do (e.g. shared ownership of a valuable asset, governance)
 * [The DAO of DAOs](https://www.notboring.co/p/the-dao-of-daos-5b9)
 
-# L1s
+L1s
+===============
 _In-depth page: [L1](L1)_
 
-# L2s
+L2s
+===============
 _In-depth page: [L2](L2.md)_
 * [Eth docs on L2 Rollups](https://ethereum.org/en/developers/docs/scaling/layer-2-rollups/) - see the bottom of this page for further links
 * [Optimistic rollups: Arbitrum vs Optimism](https://insights.deribit.com/market-research/making-sense-of-rollups-part-2-dispute-resolution-on-arbitrum-and-optimism/)
@@ -62,16 +76,20 @@ _In-depth page: [L2](L2.md)_
 * [Vitalik's post on rollups](https://vitalik.ca/general/2021/01/05/rollup.html) - a fairly technical summary of the SOTW of rollups
 * [ZK-STARKS](https://docs.ethhub.io/ethereum-roadmap/layer-2-scaling/zk-starks/)
 
-# Trading mechanics
-_In-depth page: [Trading](Trading.md)_
+Trading mechanics
+===============
+_In-depth page: [TradingDynamics](TradingDynamics.md)_
 
 _In-depth page: [MEV/Arbitrage](MEV.md)_
 
 
-# Tools/Analytics
+Tools/Analytics
+===============
 _In-depth page: [Tools](Tools.md)_
 
-# Directories
+
+Directories
+===============
 * [Skill tree](https://thedailyape.notion.site/Skill-Tree-f5d7691421024090b66f9b07f7384314) -
   Darren Lau's minimal list of things to learn about crypto
 * [The Daily Ape - directory](https://thedailyape.notion.site/thedailyape/Directory-c96c0b6727c0433a962e897ef43efb7e) -
@@ -79,13 +97,20 @@ _In-depth page: [Tools](Tools.md)_
 * [Pentacle](https://pentacle.ai/): directory of Ethereum, Solana, and NFT projects
 * [Everest.link](https://everest.link/) - project registry
 
-# Online courses
+
+Online courses
+===============
 * [Berkeley DeFi](https://berkeley-defi.github.io/f21)
 
-# Special Topics (Child Pages)
+
+Special Topics (Child Pages)
+==============================
 * [DAO](DAO.md)
 * [DeFi](DeFi.md)
 * [L1](L1)
+* [L2](L2.md)
 * [MEV](MEV.md)
 * [NFT](NFT.md)
-* [Trading](Trading.md)
+* [Regulatory](Regulatory.md)
+* [Trading Dynamics](TradingDynamics.md)
+* [Other Lists](OtherLists.md), which served as partial inspiration for this repo

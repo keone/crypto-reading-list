@@ -1,3 +1,6 @@
+_Not financial or legal advice.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
+for suggestions or to report errors._
+
 # Why
 * [The meaning of decentralization](https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274) (Feb 2017, Vitalik)
 

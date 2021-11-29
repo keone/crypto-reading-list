@@ -1,8 +1,12 @@
+_Not financial or legal advice.  Use all tools at your own risk.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
+for suggestions or to report errors._
+
 # Coin info
 Price, official websites, stats, volume by venue, etc:
 * [CoinMarketCap](http://coinmarketcap.com)
 * [CoinGecko](http://coingecko.com)
 * [Nomics](http://nomics.com)
+* [Messari](https://messari.io/)
 
 # Charting
 ## Charting for CEXes

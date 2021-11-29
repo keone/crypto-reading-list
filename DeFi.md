@@ -1,3 +1,6 @@
+_Not financial or legal advice.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
+for suggestions or to report errors._
+
 # DeFi
 
 ## DEX Trading

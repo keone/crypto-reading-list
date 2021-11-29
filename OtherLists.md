@@ -1,5 +1,6 @@
 _Not financial or legal advice.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
 for suggestions or to report errors._
 
-# Tools
-* [L2beat](https://l2beat.com/) - comparison of current state of various L2s
+Many thanks to authors of prior compendiums of crypto knowledge, such as:
+* [The Reading List](https://www.decentralised.co/the-reading-list/)
+

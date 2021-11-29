@@ -11,10 +11,10 @@
   a book on the technicals of bitcoin, published by O'Reilly but available for free on github.
 
 ## Ethereum
-_In-depth page: [Ethereum](Ethereum.md)
+_In-depth page: [Ethereum](Ethereum.md)_
 
 ## Solana
-_In-depth page: [Solana](Solana.md)
+_In-depth page: [Solana](Solana.md)_
 * [Solana Validator 101: transaction processing](https://jito-labs.medium.com/solana-validator-101-transaction-processing-90bcdc271143)
 
 ## Tendermint (Cosmos)
@@ -23,6 +23,9 @@ _In-depth page: [Solana](Solana.md)
   See "Consensus systems" for a good summary of Tendermint vs PBFT and other consensus algos.
 * [Tendermint whitepaper ("The latest gossip on BFT consensus")](https://arxiv.org/pdf/1807.04938.pdf) (2018) -
   describing the Tendermint consensus algo
+
+## Terra
+_In-depth page: [Terra](Terra.md)_
 
 ## Historical / academic background
 * [Practical Byzantine Fault Tolerance](https://pmg.csail.mit.edu/papers/osdi99.pdf) (Castro and Liskov, 1999) -

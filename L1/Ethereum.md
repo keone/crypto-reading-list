@@ -1,4 +1,5 @@
-# Ethereum
+Ethereum
+==========
 
 ## Protocol
 * [EIP-1559 Analysis](https://insights.deribit.com/market-research/analysis-of-eip-1559/) (June 2020) -
@@ -21,3 +22,5 @@
 * [Smart contract sanctuary](https://github.com/tintinweb/smart-contract-sanctuary) -
   a dump of contracts verified on Etherscan (and other EVM chain scanners)
   
+## Ecosystem
+* [pentacle.ai/ethereum](https://pentacle.ai/ethereum)
