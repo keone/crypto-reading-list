@@ -16,6 +16,8 @@ Ethereum
 ### Learning
 * [CryptoZombies](https://cryptozombies.io/) - learn solidity by building up a zombie game
 * [Solidity by Example](https://solidity-by-example.org/)
+* [Pet shop Truffle tutorial](https://www.trufflesuite.com/tutorial)
+* [DeFi developer roadmap](https://github.com/OffcierCia/DeFi-Developer-Road-Map)
 
 ### Dev tools
 * [eth-brownie](https://github.com/eth-brownie/brownie) - python framework for EVM smart contracts

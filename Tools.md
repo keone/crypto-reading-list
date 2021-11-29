@@ -22,11 +22,9 @@ Price, official websites, stats, volume by venue, etc:
 
 
 # Analytics
-## Scanners
-Scanners display info about transactions, wallet balances, etc.
-Each chain has one or more scanners, we list only a few
-* [Etherscan](http://etherscan.io)
-* [Solscan](http://solscan.io)
+## Address/token info
+* [Etherscan](http://etherscan.io) display info about transactions, wallet balances, etc.  There is a clone for ~every chain, such as [Solscan](http://solscan.io) for Solana.
+* [Bloxy](https://bloxy.info/)
 
 ## On-chain analytics
 * [Dune Analytics](https://dune.xyz/) - analytics platform for Ethereum, featuring various datasets built from processing blockchain data

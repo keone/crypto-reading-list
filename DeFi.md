@@ -4,11 +4,16 @@ for suggestions or to report errors._
 # DeFi
 
 ## DEX Trading
+* [Constant Function Market-Makers](https://arxiv.org/pdf/2003.10001.pdf) (June 2020) -
+  a theoretical assessment of the more general version of constant-product market-makers
 * [Perp AMMs](https://insights.deribit.com/market-research/the-quest-for-perp-amms/) -
   explaining the vAMM method introduced by Perpetual Protocol and its current pitfalls
 * [UniV3 Simulator](https://defi-lab.xyz/uniswapv3simulator)
 
 ## Stablecoins
+
+## Insurance
+* [Nexus Mutual (NXM) whitepaper](https://nexusmutual.io/assets/docs/nmx_white_paperv2_3.pdf)
 
 ## Governance wars and DeFi
 * [CRV/CVX part 1](https://tokenbrice.xyz/defi-flywheel/) (June 2021) - 

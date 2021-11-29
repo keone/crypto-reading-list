@@ -22,8 +22,8 @@ Why is crypto important?
 * [7 things to read about bitcoin](https://www.paradigm.xyz/2020/05/7-things-to-read-about-bitcoin-for-institutional-investors/) (Matt Huang, 2020)
 * [Crypto tokens: a breakthrough in open design](https://cdixon.org/2017/05/27/crypto-tokens-a-breakthrough-in-open-network-design) (Chris Dixon, 2017) -
   tokens as an enabler for alignment between networks and their participants
-* [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) -
-  noted researcher Hasu weighing in on the merits of protocol tokens during a time when many cynics questioned the need for each project to have its own token
+* [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) (Dec 2020) -
+  noted researcher Hasu weighs in on the merits of protocol tokens, during a time when many cynics questioned the need for each project to have its own token
 
 Blockchain mechanics & innovations
 ====================================
@@ -69,12 +69,13 @@ _In-depth page: [L1](L1)_
 L2s
 ===============
 _In-depth page: [L2](L2.md)_
+* [L2 for Beginners](https://gourmetcrypto.substack.com/p/layer-2-for-beginners) - 
+  describing a mental model of an L2 as a chain which writes enough state back to Ethereum that
+  no one (including the L2's miners/validators) can send back a fraudulent state
 * [Eth docs on L2 Rollups](https://ethereum.org/en/developers/docs/scaling/layer-2-rollups/) - see the bottom of this page for further links
 * [Optimistic rollups: Arbitrum vs Optimism](https://insights.deribit.com/market-research/making-sense-of-rollups-part-2-dispute-resolution-on-arbitrum-and-optimism/)
 * [Optimistic rollups vs ZK-rollups](https://limechain.tech/blog/optimistic-rollups-vs-zk-rollups/) -
   a recent assessment of the state of various rollup projects
-* [Vitalik's post on rollups](https://vitalik.ca/general/2021/01/05/rollup.html) - a fairly technical summary of the SOTW of rollups
-* [ZK-STARKS](https://docs.ethhub.io/ethereum-roadmap/layer-2-scaling/zk-starks/)
 
 Trading mechanics
 ===============
