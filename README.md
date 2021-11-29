@@ -65,10 +65,11 @@ _In-depth page: [DeFi](DeFi.md)_
   explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
 * [Serum](https://www.projectserum.com/) -
   a "[de]central[ized] limit order book"
-  (technical introduction - conversational and quite well-written)[https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit]
-  (serum codebase in Rust)[https://github.com/project-serum/serum-dex]
-  (codebase for pythonistas)[https://github.com/serum-community/pyserum]
-  (discord)[https://discord.com/invite/zxPsXcB]
+  
+  [technical introduction - conversational and quite well-written](https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit)
+  [serum codebase in Rust](https://github.com/project-serum/serum-dex)
+  [codebase for pythonistas](https://github.com/serum-community/pyserum)
+  [discord](https://discord.com/invite/zxPsXcB)
   
 
 NFTs & digital identity
