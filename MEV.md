@@ -11,7 +11,7 @@ Recommended:
   the single best discussion of MEV and how searchers (arbitrageurs) uncover arbs and submit them to the
   flashbots private relay.  Includes discussion of the role flashbots plays in 'democratizing' MEV and
   providing DOS protection for miners.
-* [Awesome MEV Resources](https://github.com/0xalpharush/awesome-MEV-resources) - curated list of MEV articles/podcasts/etc
+* [awesome-MEV-resources](https://github.com/0xalpharush/awesome-MEV-resources) - curated list of MEV articles/podcasts/etc
   
 History:
 * [Ethereum is a dark forest](https://www.paradigm.xyz/2020/08/ethereum-is-a-dark-forest/) (Dan Robinson, Aug 2020)

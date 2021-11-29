@@ -34,6 +34,7 @@ Rarity:
 * [nftbank.ai](https://nftbank.ai/landing) - NFT portfolio tracking
 
 ### Solana
+See [Awesome Solana NFTs](https://github.com/ilmoi/awesome-solana-nfts) (curated list of resources on Solana NFTs)
 Marketplaces:
 * [MagicEden](http://magiceden.io)
 * [Alpha.art](http://alpha.art)

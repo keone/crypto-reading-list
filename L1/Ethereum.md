@@ -23,6 +23,7 @@ Ethereum
 * [eth-brownie](https://github.com/eth-brownie/brownie) - python framework for EVM smart contracts
 * [Smart contract sanctuary](https://github.com/tintinweb/smart-contract-sanctuary) -
   a dump of contracts verified on Etherscan (and other EVM chain scanners)
+* [awesome-solidity](https://github.com/bkrem/awesome-solidity)
 * [dapptools](https://dapp.tools/) - powerful command line tools for smart contract development
   
 ## Ecosystem
