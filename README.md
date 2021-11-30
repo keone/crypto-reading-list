@@ -63,13 +63,6 @@ _In-depth page: [DeFi](DeFi.md)_
   explaining the 'concentrated liquidity' innovation in UniswapV3
 * [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/) -
   explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
-* [Serum](https://www.projectserum.com/) -
-  a "[de]central[ized] limit order book"
-  * [technical introduction](https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit) conversational and the right amount of depth
-  * [Rust codebase](https://github.com/project-serum/serum-dex)
-  * [python codebase](https://github.com/serum-community/pyserum)
-  * [discord](https://discord.com/invite/zxPsXcB)
-  
 
 NFTs & digital identity
 ===========================

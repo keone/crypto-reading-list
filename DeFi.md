@@ -3,12 +3,27 @@ for suggestions or to report errors._
 
 # DeFi
 
-## DEX Trading
+## Contents
+* [AMMs](#amm-swap-according-to-a-formula-dexes)
+* [Serum](#serum---full-order-book)
+* [Stablecoins](#stablecoins)
+* [Insurance](#insurance)
+* [Governance](#governance-wars-and-defi)
+* [Tools](#tools)
+
+## DEX trading
+### AMM (swap according to a formula) DEXes
 * [Constant Function Market-Makers](https://arxiv.org/pdf/2003.10001.pdf) (June 2020) -
   a theoretical assessment of the more general version of constant-product market-makers
 * [Perp AMMs](https://insights.deribit.com/market-research/the-quest-for-perp-amms/) -
   explaining the vAMM method introduced by Perpetual Protocol and its current pitfalls
 * [UniV3 Simulator](https://defi-lab.xyz/uniswapv3simulator)
+
+### Serum - full order book
+* [Serum project homepage](https://www.projectserum.com/)
+* [technical introduction](https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit) conversational and the right amount of depth
+* [rust codebase](https://github.com/project-serum/serum-dex)
+* [pyserum](https://github.com/serum-community/pyserum)
 
 ## Stablecoins
 * [Stablecoin Overview](https://www.youtube.com/watch?v=0XB_2O6FsIk) - a general overview of the stablecoin landscape and key differentiators for categorization
