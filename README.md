@@ -80,6 +80,11 @@ _In-depth page: [DAO](DAO.md)_
 L1s
 ===============
 _In-depth page: [L1](L1)_
+* [Bitcoin](L1/Bitcoin.md)
+* [Ethereum](L1/Ethereum.md)
+* [Solana](L1/Solana.md)
+* [Cosmos](L1/Cosmos.md)
+* [Terra](L1/Terra.md)
 
 L2s
 ===============
