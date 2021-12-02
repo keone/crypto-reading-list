@@ -21,7 +21,8 @@ for suggestions or to report errors._
 
 ### Serum - full order book
 * [Serum whitepaper](https://assets.website-files.com/61382d4555f82a75dc677b6f/61384a6d5c937269dbed185c_serum_white_paper.88d98f84.pdf)
-* [technical introduction](https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit) conversational and the right amount of depth
+* [technical introduction](https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit) -
+  conversational and the right amount of depth
 
 ## Stablecoins
 * [Stablecoin Overview](https://www.youtube.com/watch?v=0XB_2O6FsIk) - a general overview of the stablecoin landscape and key differentiators for categorization

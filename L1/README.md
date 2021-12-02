@@ -13,7 +13,7 @@
 * [Awesome cryptography papers](https://github.com/pFarb/awesome-crypto-papers) - 
   a curated list of papers on various cryptographic techniques
 * [Bitcoin and Cryptocurrency Technologies](https://d28rh4a8wq0iu5.cloudfront.net/bitcointech/readings/princeton_bitcoin_book.pdf) (2016) -
-  textbook with no shortage of bitcoin technicals (even contains exercises), but not at all dry to read
+  textbook with no shortage of bitcoin technicals (even contains exercises) but not at all dry to read
 * [Distributed Systems](https://www.cl.cam.ac.uk/teaching/2021/ConcDisSys/dist-sys-notes.pdf) -
-  excellent 101-level lecture notes - presumes some comfort with math notation, particularly predicate logic
-  why is Solana's "Proof of History / clock before consensus" an innovation? distributed systems concepts help piece it together
+  excellent 101-level lecture notes. presumes some comfort with math notation, particularly predicate logic.
+  distributed systems concepts can help answer questions like "why is Solana's "Proof of History" an innovation?"
