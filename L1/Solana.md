@@ -22,6 +22,8 @@ Solana
 * [Metaplex](https://github.com/metaplex-foundation/metaplex) -
   defines the NFT standard on Solana; also standardized the minting process (candy machine).
   See also [community docs](https://docs.metaplex.com/community).
+* [Rust programming on Solana](https://brson.github.io/2021/06/08/rust-on-solana) -
+  thoughtful opinions and useful tips by a Solana beginner who's very experienced in Rust (core developer)
   
 ## Ecosystem
 _see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
@@ -30,3 +32,5 @@ _see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
 
 ## Serum
 * [awesome-serum](https://github.com/project-serum/awesome-serum)
+* [rust codebase](https://github.com/project-serum/serum-dex)
+* [pyserum](https://github.com/serum-community/pyserum)

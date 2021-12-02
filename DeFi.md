@@ -20,10 +20,8 @@ for suggestions or to report errors._
 * [UniV3 Simulator](https://defi-lab.xyz/uniswapv3simulator)
 
 ### Serum - full order book
-* [Serum project homepage](https://www.projectserum.com/)
+* [Serum whitepaper](https://assets.website-files.com/61382d4555f82a75dc677b6f/61384a6d5c937269dbed185c_serum_white_paper.88d98f84.pdf)
 * [technical introduction](https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit) conversational and the right amount of depth
-* [rust codebase](https://github.com/project-serum/serum-dex)
-* [pyserum](https://github.com/serum-community/pyserum)
 
 ## Stablecoins
 * [Stablecoin Overview](https://www.youtube.com/watch?v=0XB_2O6FsIk) - a general overview of the stablecoin landscape and key differentiators for categorization
@@ -71,4 +69,3 @@ Use these to track your (or anyone else's) balances across various DeFi protocol
 ### Fun
 * [fees.wtf](http://fees.wtf) - check how much you have spent on ETH fees
 * [il.wtf](https://il.wtf) - check your cumulative IL
-
