@@ -24,7 +24,9 @@ Solana
   See also [community docs](https://docs.metaplex.com/community).
 * [Rust programming on Solana](https://brson.github.io/2021/06/08/rust-on-solana) -
   thoughtful opinions and useful tips by a Solana beginner who's very experienced in Rust (core developer)
-  
+* [spl token-lending protocol exploit](https://blog.neodyme.io/posts/lending_disclosure) -
+  walkthrough of an exploit in spl token-lending protocol identified by Neodyme, as an example of a flaw in a smart contract
+
 ## Ecosystem
 _see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
 * [pentacle.ai/solana](https://pentacle.ai/solana)
