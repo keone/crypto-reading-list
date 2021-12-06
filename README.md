@@ -61,6 +61,8 @@ _In-depth page: [DeFi](DeFi.md)_
 * [Bridges](https://blog.makerdao.com/what-are-blockchain-bridges-and-why-are-they-important-for-defi/)
 * [Uniswap V3 whitepaper](https://uniswap.org/whitepaper-v3.pdf) -
   explaining the 'concentrated liquidity' innovation in UniswapV3
+  (see also [Uniswap v3: The Universal AMM](https://www.paradigm.xyz/2021/06/uniswap-v3-the-universal-amm/)
+  for illustrations of UniV3 emulating specific other functions)
 * [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/) -
   explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
 
@@ -92,7 +94,8 @@ _In-depth page: [L2](L2.md)_
 * [L2 for Beginners](https://gourmetcrypto.substack.com/p/layer-2-for-beginners) - 
   describing a mental model of an L2 as a chain which writes enough state back to Ethereum that
   no one (including the L2's miners/validators) can send back a fraudulent state
-* [Eth docs on L2 Rollups](https://ethereum.org/en/developers/docs/scaling/layer-2-rollups/) - see the bottom of this page for further links
+* [Almost everything you need to know about optimistic rollups](https://www.paradigm.xyz/2021/01/almost-everything-you-need-to-know-about-optimistic-rollup/) (Jan 2021) -
+  builds up the design for optimistic rollups from first principles, addressing various perceived issues as they arise
 * [Optimistic rollups: Arbitrum vs Optimism](https://insights.deribit.com/market-research/making-sense-of-rollups-part-2-dispute-resolution-on-arbitrum-and-optimism/)
 * [Optimistic rollups vs ZK-rollups](https://limechain.tech/blog/optimistic-rollups-vs-zk-rollups/) -
   a recent assessment of the state of various rollup projects

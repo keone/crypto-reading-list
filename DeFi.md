@@ -17,6 +17,7 @@ for suggestions or to report errors._
   a theoretical assessment of the more general version of constant-product market-makers
 * [Perp AMMs](https://insights.deribit.com/market-research/the-quest-for-perp-amms/) -
   explaining the vAMM method introduced by Perpetual Protocol and its current pitfalls
+* [Explaining balancer pools](https://medium.com/balancer-simulations/understanding-balancer-pools-c2b877dcc082)
 * [UniV3 Simulator](https://defi-lab.xyz/uniswapv3simulator)
 
 ### Serum - full order book
