@@ -37,6 +37,16 @@ _see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
 * [spl token-lending protocol exploit](https://blog.neodyme.io/posts/lending_disclosure) -
   walkthrough of an exploit in spl token-lending protocol identified by Neodyme, as an example of a flaw in a smart contract
 
+## Incidents
+_to understand what went wrong, why it wrong, and how we can learn from it_
+* [9-14 network outage: Solana postmortem](https://solana.com/news/9-14-network-outage-initial-overview) -
+  official Solana post-mortem
+* [9-14 Jump Crypto postmortem](https://jumpcrypto.com/reflections-on-the-sept-14-solana-outage/) -
+  post-mortem by Leopold Schabel (Jump Crypto) with additional details
+* [12-9 slowdown (no outage)](https://www.coindesk.com/tech/2021/12/10/solana-validators-engineers-grapple-with-blockchain-slowdown-on-public-call/) -
+  filler coindesk article for now, will replace with a more useful information source once available
+
+
 ## Programming notes
 
 *(Please feel free to edit and correct any mistakes. Also don't hesitate to remove content if you find it overly verbose / repetitive)*
@@ -77,7 +87,7 @@ The `solana-program` crate exposes a `macro` aptly named `entrypoint!`
   - Return the serialized outputs in a `ProgramResult`, a thin-wrapper around `std::result::Result`.
 - See the [helloworld example](https://github.com/solana-labs/example-helloworld/blob/master/src/program-rust/src/lib.rs)
 
-### Taking a look at Serum (WIP)
+### Taking a look at Serum
 
 Let's take a look at something more complicated than "hello world!". How about a real-world example? The [Serum dex](https://github.com/project-serum/serum-dex) itself!
 
@@ -140,10 +150,61 @@ Interesting! So it looks like they deserialize the instructions then pattern mat
 
 As you might expect, these are standard instructions you'd run on an order book.
 
+### The importance of APIs, evolution, and the bigger picture
+
 One thing that stands out here is the `NewOrder`, `NewOrderV2`, `NewOrderV3` definitions, with the first two `unimplemented`.
 It looks a little funky. It appears to be handling for API versioning / compatibility.
 
-I don't know enough to determine whether that's idiomatic or not. Perhaps this is the best way to deprecate operations in an on-chain program?
+Here is a key point: *a Solana program is ultimately an API*. As will all APIs, it's important to think carefully about the interface you're providing.
+- What are you going to do when your program logic changes?
+- How are you going to add features (API additions)?
+- How are you going to deprecate functionality (breaking changes)?
+
+**Ok why is this so important?**
+
+When there is an entire ecosystem of other programs or client apps that depend on your on-chain program, it's _especially_ critical to consider these points.
+
+Imagine a dApp developer building a UI on top of the Serum interface.
+How would they feel if Serum was constantly changing the way they implemented order submission,
+breaking their app? They'd probably stop using Serum.
+
+In the spirit of decentralization, you should consider it _your_ responsibility to think carefully about your consumers everytime you make a change your program.
+Did the public API change? Is it really encapsulated from the client?
+A culture of constant breaking changes will damage morale and eventually drive developers away from the ecosystem.
+
+All this said, as with anything there is a trade-off. Solana development is still very new.
+Development is rapid and ongoing. That comes hand-in-hand with breaking changes.
+
+In my opinion, the best thing to do is think for yourself: carefully consider the trade-offs and make an informed decision.
+Don't blindly break APIs, thinking that's ok just because Solana development is new.
+Don't chain yourself to previous iterations of your code either -- if your app has evolved, your codebase should evolve with it.
+Solana explicitly spells out some [backwards compatibility guidelines](https://docs.solana.com/developing/backwards-compatibility).
+
+
+### Case study: how Serum evolved their API to support a big breaking change
+
+Take a look at this pull request releasing Dex V3:
+https://github.com/project-serum/serum-dex/pull/97. Here's the description:
+
+> The primary change is to immediately match incoming orders against the book,
+> instead of first buffering them in the request queue.
+> The request queue still exists to reduce breakage, but is always empty.
+> Because of this, we're forced to remove support for the old order placement and cancellation instructions,
+> since they don't provide the bids and asks accounts which would be necessary in order to process them in the new model.
+
+Briefly, some more context:
+- orders used to go into a `request queue`, not the order book directly.
+- a "user" (i.e. either another on-chain program or client app) would explicitly send a "crank turn" instruction to Serum
+- this "crank turn" pulled requests off the queue and matched them in the order book
+
+As you might guess from both the description and the diff, this is a sizeable API change.
+
+Observations on what they did:
+- They implemented a corresponding "V2" or "V3", e.g. `MarketInstruction::CancelOrderV2`
+
+// TODO
+
+
 
 ### Highlights (WIP)
 
