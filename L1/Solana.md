@@ -38,7 +38,7 @@ _see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
   walkthrough of an exploit in spl token-lending protocol identified by Neodyme, as an example of a flaw in a smart contract
 
 ## Incidents
-_to understand what went wrong, why it wrong, and how we can learn from it_
+_To understand what went wrong, why it went wrong, and how we can learn from it_
 * [9-14 network outage: Solana postmortem](https://solana.com/news/9-14-network-outage-initial-overview) -
   official Solana post-mortem
 * [9-14 Jump Crypto postmortem](https://jumpcrypto.com/reflections-on-the-sept-14-solana-outage/) -
@@ -49,12 +49,21 @@ _to understand what went wrong, why it wrong, and how we can learn from it_
 
 ## Programming notes
 
-*(Please feel free to edit and correct any mistakes. Also don't hesitate to remove content if you find it overly verbose / repetitive)*
+*(Please feel free to directly edit: fix inaccuracies, expand content, condense sections, etc.)*
 
 Goal of this section: condense the above resources and compile useful tidbits (tips, gotchas) to reference in the future.
 
 Let's also take a look at the [Serum](https://github.com/project-serum/serum-dex) code itself.
 The escrow tutorial is excellent, but it would be interesting to look at a directly relevant real-world program.
+
+- [Framing](#framing)
+- [On-chain programs](#on-chain-programs)
+- [Taking a look at Serum](#taking-a-look-at-serum)
+- [The importance of APIs and the bigger picture](#the-importance-of-apis-and-the-bigger-picture)
+- [How Serum evolved their API](#how-serum-evolved-their-api)
+- [Ownership](#ownership)
+- [Highlights](#highlights)
+- [Gotchas](#gotchas)
 
 ### Framing
 
@@ -150,7 +159,7 @@ Interesting! So it looks like they deserialize the instructions then pattern mat
 
 As you might expect, these are standard instructions you'd run on an order book.
 
-### The importance of APIs, evolution, and the bigger picture
+### The importance of APIs and the bigger picture
 
 One thing that stands out here is the `NewOrder`, `NewOrderV2`, `NewOrderV3` definitions, with the first two `unimplemented`.
 It looks a little funky. It appears to be handling for API versioning / compatibility.
@@ -181,9 +190,9 @@ Don't chain yourself to previous iterations of your code either -- if your app h
 Solana explicitly spells out some [backwards compatibility guidelines](https://docs.solana.com/developing/backwards-compatibility).
 
 
-### Case study: how Serum evolved their API to support a big breaking change
+### How Serum evolved their API
 
-Take a look at this pull request releasing Dex V3:
+Take a look at this pull request releasing Dex V3, a **breaking change**:
 https://github.com/project-serum/serum-dex/pull/97. Here's the description:
 
 > The primary change is to immediately match incoming orders against the book,
@@ -205,8 +214,11 @@ Observations on what they did:
 // TODO
 
 
+### Ownership
+// TODO
 
-### Highlights (WIP)
+
+### Highlights
 
 > Solana programs are stateless
 
@@ -217,11 +229,12 @@ Observations on what they did:
 > the basic operational unit on solana is an instruction. an instruction is one call into a program.
 > one or more instructions can be bundled into a message. a message plus an array of signatures constitutes a transaction
 
+
 It's worth reviewing the [on-chain programming docs](https://docs.solana.com/developing/on-chain-programs/overview)
 or at least the [FAQ](https://docs.solana.com/developing/on-chain-programs/faq).
 It'll save you a debugging headache.
 
-### Gotchas (WIP)
+### Gotchas
 - Don't use std::collections::HashMap. You'll get an obscure error because of the "no-randomness" constraint
   - Reason: `HashMap<K, V, S = RandomState>`. Notice the generic type `S` defaults to `RandomState`
   - It may be possible use by substituting a different, non-random `S` - see the `with_hasher` constructor (*I have not tried this myself*)
