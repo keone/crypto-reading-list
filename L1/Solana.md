@@ -70,17 +70,23 @@ The escrow tutorial is excellent, but it would be interesting to look at a direc
 It might be useful to begin by mapping new technologies to familiar concepts.
 Doing this will help us form the mental model of what exactly we're programming.
 
-At the highest-level, you have two distinct notions of a "program" in Solana:
-- the on-chain program (i.e. the smart contract and what is literally known as a **program** in Solana parlance)
-- the client or "dApp" that interacts with that Solana program
-
-With respect to tooling:
-- `solana-program` is the crate you use for writing on-chain programs
-- `solana-client` for clients
-- `solana-sdk` for shared utilities
+At the highest-level, you have two distinct notions of a **program** in Solana:
+- an on-chain program, i.e. a "smart contract" and what is literally known as a "program" in Solana parlance
+- an off-chain program, i.e. a "client" or "dApp" that interacts with the chain
 
 I find this analogous to any client-server interaction model, where the **server** is the on-chain program and the **client** is a dApp that interacts with it.
 In fact, **writing Solana programs is a lot like implementing RPC servers, REST endpoints, [insert distributed / IPC thing here]**.
+
+### Tooling
+
+Solana supports any programming language that can compile to [BPF bytecode](https://docs.solana.com/developing/on-chain-programs/overview).
+However, the vast majority of the ecosystem and tooling is in Rust. **All code in this tutorial is written in Rust, unless otherwise specified.**
+
+Relevant Rust crates:
+- `solana-program` for writing on-chain programs
+  - in all likelihood, you will also depend on existing programs in the [Solana program library](https://github.com/solana-labs/solana-program-library)
+  which are published as their own crates, e.g. `spl-token`
+- `solana-sdk`, `solana-client` for off-chain programs
 
 ### On-chain programs
 
@@ -211,11 +217,44 @@ As you might guess from both the description and the diff, this is a sizeable AP
 Observations on what they did:
 - They implemented a corresponding "V2" or "V3", e.g. `MarketInstruction::CancelOrderV2`
 
-// TODO
+### Stateless pros and cons
+_LISP programmers know the value of everything and the cost of nothing_
+
+Solana programs are "stateless". What does that mean? Programs cannot hold state their own state, so it has to be passed in.
+
+The consequence is the same input leads to the same output, _always_. You have **determinism** (caveat: reality is not so simple).
+If you're familiar with the "pure functional programming" paradigm, you'll feel right at home.
+
+**Not every chain enforces statelessness. What are the pros / cons to Solana doing this?**
+
+Pros:
+- Facilitates parallel processing. Sealevel (Solana runtime) knows exactly what data a program depends on, and therefore what it can safely parallelize.
+  - You can also specify whether a dependency is read-only. Readers don't block readers.
+- Simplifies the programming model.
+  - Referential transparency and the substitution model
+  - I can substitute any expression `e` in my program with the result of evaluating `e`, _without changing my program's behavior_
+
+Cons:
+- Complicates the programming model
+  - State has to be stored in separate accounts which don't live together with your program.
+    - These accounts are opaque `Pubkey`s and have to be serialized / deserialized everytime you interact with them.
+- APIs for working with accounts are somewhat primitive
+  - Think about a function that takes 5 arguments. What goes in `arg #1` and what goes in `arg #5`, again?
+  Rich Hickey calls this [place-oriented programming](https://www.youtube.com/watch?v=SxdOUGdseq4).
+  - Even worse, it's `varargs` and there's no Rust type-checking because all the accounts are the same `AccountInfo` type.
+
+I believe as Solana evolves, they can address the downsides with higher-level APIs and more user-friendly interfaces.
+For example, just some ideas for the `accounts` problem: named arguments, dict-like structures, leveraging the type system (polymorphism of `Account`)
+
+// TODO compare with programming on other chains?
 
 
-### Ownership
-// TODO
+### Accounts
+
+- Accounts are just bytearrays `&[u8]`.
+- Accounts have a `data` field for you to store arbitrary information
+- Executable accounts are programs
+- Go into how Serum parses the account array into the literal information it needs to execute the order instruction
 
 
 ### Highlights
