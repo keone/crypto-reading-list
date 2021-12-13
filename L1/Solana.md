@@ -207,47 +207,46 @@ https://github.com/project-serum/serum-dex/pull/97. Here's the description:
 > Because of this, we're forced to remove support for the old order placement and cancellation instructions,
 > since they don't provide the bids and asks accounts which would be necessary in order to process them in the new model.
 
-Briefly, some more context:
+Some more context on the purpose of the above change:
 - orders used to go into a `request queue`, not the order book directly.
 - a "user" (i.e. either another on-chain program or client app) would explicitly send a "crank turn" instruction to Serum
 - this "crank turn" pulled requests off the queue and matched them in the order book
 
-As you might guess from both the description and the diff, this is a sizeable API change.
-
-Observations on what they did:
-- They implemented a corresponding "V2" or "V3", e.g. `MarketInstruction::CancelOrderV2`
+PR Observations:
+- All affected instructions implemented a corresponding new version "V2" or "V3", e.g. `MarketInstruction::CancelOrderV2`
+- The old versions of the instruction were then removed by replacing the body with `unimplemented!`
 
 ### Stateless pros and cons
 _LISP programmers know the value of everything and the cost of nothing_
 
-Solana programs are "stateless". What does that mean? Programs cannot hold state their own state, so it has to be passed in.
+Solana programs are **stateless**. What does that mean?
+Programs cannot hold state, so it's passed in via `process_instruction`.
 
-The consequence is the same input leads to the same output, _always_. You have **determinism** (caveat: reality is not so simple).
+The consequence is the same input always results in the same output.
 If you're familiar with the "pure functional programming" paradigm, you'll feel right at home.
 
 **Not every chain enforces statelessness. What are the pros / cons to Solana doing this?**
 
 Pros:
-- Facilitates parallel processing. Sealevel (Solana runtime) knows exactly what data a program depends on, and therefore what it can safely parallelize.
-  - You can also specify whether a dependency is read-only. Readers don't block readers.
-- Simplifies the programming model.
-  - Referential transparency and the substitution model
-  - I can substitute any expression `e` in my program with the result of evaluating `e`, _without changing my program's behavior_
+- Parallel processing. Sealevel (Solana runtime) knows exactly what data a program depends on and can safely parallelize
+- Stateless-ness and determinism makes it easier to reason about programs, because of [referential transparency](https://en.wikipedia.org/wiki/Referential_transparency)
 
 Cons:
-- Complicates the programming model
-  - State has to be stored in separate accounts which don't live together with your program.
-    - These accounts are opaque `Pubkey`s and have to be serialized / deserialized everytime you interact with them.
-- APIs for working with accounts are somewhat primitive
-  - Think about a function that takes 5 arguments. What goes in `arg #1` and what goes in `arg #5`, again?
-  Rich Hickey calls this [place-oriented programming](https://www.youtube.com/watch?v=SxdOUGdseq4).
-  - Even worse, it's `varargs` and there's no Rust type-checking because all the accounts are the same `AccountInfo` type.
+- Debugging can be difficult because a lot of data lives outside your program that you have to fetch with RPC
+- APIs for passing around accounts are not that friendly: they're passed as an array, so you have to remember the position-order
 
-I believe as Solana evolves, they can address the downsides with higher-level APIs and more user-friendly interfaces.
-For example, just some ideas for the `accounts` problem: named arguments, dict-like structures, leveraging the type system (polymorphism of `Account`)
+### Anchor
 
-// TODO compare with programming on other chains?
+This is a good segue to [Anchor](https://project-serum.github.io/anchor/getting-started/introduction.html).
 
+> Anchor is framework for building and interacting with smart contracts on Solana. Think Ruby on Rails for Solana.
+
+Anchor is an answer to the cons listed above.
+For example, in Anchor, instead of passing an array of accounts, you pass in a generic `Context<T>`,
+where `T` is a struct you define for your data.
+It also abstracts away boilerplate like serialization / deserialization.
+
+The above linked [angkor wat](https://2501babe.github.io/posts/anchor101.html) post has more details.
 
 ### Accounts
 
@@ -255,6 +254,7 @@ For example, just some ideas for the `accounts` problem: named arguments, dict-l
 - Accounts have a `data` field for you to store arbitrary information
 - Executable accounts are programs
 - Go into how Serum parses the account array into the literal information it needs to execute the order instruction
+
 
 
 ### Highlights
