@@ -10,6 +10,7 @@ for suggestions or to report errors._
 * [Insurance](#insurance)
 * [Governance](#governance-wars-and-defi)
 * [Tools](#tools)
+* [The Graph](#the-graph)
 
 ## DEX trading
 ### AMM (swap according to a formula) DEXes
@@ -23,7 +24,7 @@ for suggestions or to report errors._
 ### Serum - full order book
 * [Serum whitepaper](https://assets.website-files.com/61382d4555f82a75dc677b6f/61384a6d5c937269dbed185c_serum_white_paper.88d98f84.pdf)
 * [technical introduction](https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit) -
-  conversational and the right amount of depth
+  describes the orderbook interactions and data structures, as well as how they're implemented. Warning: not updated for DexV3
 
 ## Stablecoins
 * [Stablecoin Overview](https://www.youtube.com/watch?v=0XB_2O6FsIk) - 
@@ -81,3 +82,10 @@ Use these to track your (or anyone else's) balances/activity across various DeFi
 ### Fun
 * [fees.wtf](http://fees.wtf) - check how much you have spent on ETH fees
 * [il.wtf](https://il.wtf) - check your cumulative IL
+
+## The Graph
+* [Introduction](https://thegraph.com/docs/about/introduction) -
+  The Graph is a decentralized protocol for indexing and querying blockchain data.
+  it's like a search engine framework, and each 'subgraph' is a domain-specific search engine implementation
+* [GraphQL API](https://thegraph.com/docs/developer/graphql-api) -
+  tutorial on how to query a subgraph using GraphQL

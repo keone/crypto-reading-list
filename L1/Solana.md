@@ -38,7 +38,6 @@ _see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
   walkthrough of an exploit in spl token-lending protocol identified by Neodyme, as an example of a flaw in a smart contract
 
 ## Incidents
-_To understand what went wrong, why it went wrong, and how we can learn from it_
 * [9-14 network outage: Solana postmortem](https://solana.com/news/9-14-network-outage-initial-overview) -
   official Solana post-mortem
 * [9-14 Jump Crypto postmortem](https://jumpcrypto.com/reflections-on-the-sept-14-solana-outage/) -
@@ -48,8 +47,7 @@ _To understand what went wrong, why it went wrong, and how we can learn from it_
 
 
 ## Programming notes
-
-*(Please feel free to directly edit: fix inaccuracies, expand content, condense sections, etc.)*
+*Please feel free to directly edit: fix inaccuracies, expand content, condense sections, etc.*
 
 Goal of this section: condense the above resources and compile useful tidbits (tips, gotchas) to reference in the future.
 
@@ -175,7 +173,7 @@ Here is a key point: *a Solana program is ultimately an API*. As will all APIs, 
 - How are you going to add features (API additions)?
 - How are you going to deprecate functionality (breaking changes)?
 
-**Ok why is this so important?**
+#### Ok, so why is this important?
 
 When there is an entire ecosystem of other programs or client apps that depend on your on-chain program, it's _especially_ critical to consider these points.
 
@@ -187,7 +185,7 @@ In the spirit of decentralization, you should consider it _your_ responsibility 
 Did the public API change? Is it really encapsulated from the client?
 A culture of constant breaking changes will damage morale and eventually drive developers away from the ecosystem.
 
-All this said, as with anything there is a trade-off. Solana development is still very new.
+All this said, as with anything there is a trade-off. Solana programming is still very new.
 Development is rapid and ongoing. That comes hand-in-hand with breaking changes.
 
 In my opinion, the best thing to do is think for yourself: carefully consider the trade-offs and make an informed decision.
