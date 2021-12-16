@@ -11,6 +11,10 @@ Ethereum
   evaluating ETH as we would value a high-growth tech company, with a lot of helpful links to other articles
 * [Mastering Ethereum](https://github.com/ethereumbook/ethereumbook) (Andreas Antonopoulos and Gavin Wood, 2018) -
   a book for devs about Ethereum, published by O'Reilly but available for free on github
+* [Patricia tree](https://eth.wiki/fundamentals/patricia-tree) -
+  an important Ethereum data structure. Intuitively, a Patricia tree is a Merkle tree + trie + compression.
+  The linked page includes diagrams and a small example worth working through
+
 
 ## Programming in Solidity
 ### Learning
