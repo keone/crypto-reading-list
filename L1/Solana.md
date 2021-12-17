@@ -11,6 +11,7 @@ Solana
 _see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
 * [pentacle.ai/solana](https://pentacle.ai/solana)
 * [awesome-solana](https://github.com/paul-schaaf/awesome-solana)
+* [how to solana](https://github.com/sinoglobalcap/how-to-solana) - an overview of important primitives in the Solana ecosystem from Sino Global
 
 ## Serum
 * [awesome-serum](https://github.com/project-serum/awesome-serum)
