@@ -25,6 +25,7 @@ Contents
 * [Tools/Analytics](#toolsanalytics)
 * [Directories](#directories)
 * [Online courses](#online-courses)
+* [Exercises](#exercises)
 
 
 Why is crypto important?

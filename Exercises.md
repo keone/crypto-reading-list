@@ -12,8 +12,7 @@ A collection of reading questions and exercises to help check for understanding.
 * They both seem to take some input and scramble it to some output. Can we reuse the same function for both?
 * How does public-key cryptography relate?
 
-(These are important prereqs, as mentioned in [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/))
-
+These are important prereqs, as mentioned in [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/).
 <details>
 
 #### Can we reuse the same function?
@@ -32,6 +31,7 @@ Reversibility happens to be one property directly in conflict.
 Describe a blockchain (data structure). What's the use-case?
 
 <details>
+
 A blockchain is a linked list with hash pointers. Its components:
 
 * `.prev` pointer
@@ -39,18 +39,18 @@ A blockchain is a linked list with hash pointers. Its components:
 
 The use-case is tamper detection. If any node in the blockchain is altered, we'll know because the hash will no longer match.
 Therefore, you can always check the blockchain is valid by iterating from the head of the list, for every `curr`, hashing `prev`, and checking that equals `curr.prev_hash`
-
 </details>
 
 What's a Merkle tree? What's the use-case?
 
 <details>
-It takes `O(n)` time to verify a block is part of a blockchain, where `n` is the number of blocks.
-
-This is because you have to start from the head and check the hashes until you get to that given block.
 
 Merkle tree is a clever data structure to reduce time complexity by leveraging the fact hashes are composable.
 You can combine two hashes `H(h1, h2)` to produce a third hash `h3`. If either `h1` or `h2` change, `h3` changes.
+
+It takes `O(n)` time to verify a block is part of a blockchain, where `n` is the number of blocks.
+
+This is because you have to start from the head and check the hashes until you get to that given block.
 
 Overlay a tree on the blockchain such that all the leaves of the tree correspond to the original blocks.
 Each parent is a composite hash, and the parent's parent is a composite of composite hashes, and so on.
@@ -82,6 +82,7 @@ Can you come up with a cryptographic scheme `Anoncoin` that anonymizes `Doxxcoin
 
 #### Hint
 <details>
+
 commitment, escrow pool, burn to mint, trust-less
 </details>
 
@@ -96,6 +97,7 @@ commitment, escrow pool, burn to mint, trust-less
 
 #### Solution
 <details>
+
 The key idea is to anonymize by pooling `Doxxcoin` together into a collective `Anoncoin` escrow pool then redeeming `Doxxcoin` from that pool.
 The coin you get out is not the same coin you put in.
 More importantly, the coin you get out cannot be associated in any way with the coin you put in.
@@ -141,11 +143,13 @@ There is a problem with the scheme described in the solution above. Can you spot
 
 #### Hint
 <details>
+
 UTXO
 </details>
 
 #### Solution
 <details>
+
 There's a double-spend problem. I can keep constructing Zk-proofs, and getting newly-minted `Doxxcoin`.
 
 This is because the `Zk-proof` makes it such that my envelope is never opened: in fact the protocol doesn't even know which envelope is mine.
