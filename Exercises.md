@@ -61,20 +61,21 @@ Then, by keeping the tree balanced, the complexity is logarithmic.
 </details>
 
 
-### Zero-knowledge proofs
+### Design a crypto protocol
 
 #### Doxxcoin / Anoncoin
 You are the designer of a currency `Doxxcoin`, and you want to implement a protocol `Anoncoin` that allows `Doxxcoin` holders to "anonymize" their coins.
 
-Rules:
-* The definition of "anonymize" is to disassociate a `Doxxcoin` from all previous usages.
-* You have the ability to mint / burn `Doxxcoin`. `Anoncoin` is just what we're calling the protocol.
+#### Rules
+* The definition of **anonymize** is to disassociate a given `Doxxcoin` from all its prior transactions and addresses.
+* `Doxxcoin` works like `Bitcoin`, so you can trace all a given coin's addresses using the transaction ledger.
+* You have the ability to mint and burn `Doxxcoin`. `Anoncoin` is just what we're calling the protocol.
 * Users should still be able transact with `Doxxcoin` after anonymization.
 * For the sake of simplicity, disregard units or amounts.
 
-Assume also you have the means to construct a Zk-proof that satisfies the predicate `Zk(f, x): ∃x, f(x) ∈ {s1, s2, ... , sn}`
-* Predicate: "There exists an `x` such that `f(x)` in `S` where `S` is a set containing `s1, s2, ..., sn`"
-* Zero-knowledge proof: "I know `x` such that `f(x)` is in `S`, without giving away `x`"
+Assume also you have the means to construct a **zero-knowledge proof** that satisfies the predicate `Zk(f, x): ∃x, f(x) ∈ {s1, s2, ... , sn}`
+* **Predicate:** "There exists an `x` such that `f(x)` is in the set `S = {s1, s2, ..., sn}`"
+* **Zero-knowledge proof:** "I know `x` such that `f(x)` is in `S`, without giving away `x`"
 * You can pick what `f` and `x` are
 * The Zk-proof can be treated as a black-box and used anywhere in the scheme.
 
