@@ -14,6 +14,8 @@ Ethereum
 * [Patricia tree](https://eth.wiki/fundamentals/patricia-tree) -
   an important Ethereum data structure. Intuitively, a Patricia tree is a Merkle tree + trie + compression.
   The linked page includes diagrams and a small example worth working through
+* [An Incomplete Guide to Rollups](https://vitalik.ca/general/2021/01/05/rollup.html) -
+  Vitalik explains what rollups are, including the difference between optimistic and zk
 
 
 ## Programming in Solidity

@@ -126,3 +126,8 @@ _In-depth page: [Other Lists](OtherLists.md)_
 Online courses
 ===============
 * [Berkeley DeFi](https://berkeley-defi.github.io/f21)
+
+
+Exercises
+=========
+_In-depth page: [Exercises](Exercises.md)_
