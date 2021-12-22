@@ -4,6 +4,8 @@ Ethereum
 ## Blockchain
 * [Ethereum whitepaper](https://ethereum.org/en/whitepaper/) -
   building on bitcoin to get smartcontracts; also a good explanation of _Bitcoin_
+* [How does ethereum work anyway](https://www.preethikasireddy.com/post/how-does-ethereum-work-anyway) (2017) -
+  a clear description of the Eth network as a state transition machine
 * [Patricia tree](https://eth.wiki/fundamentals/patricia-tree) -
   an important Ethereum data structure. Intuitively, a Patricia tree is a Merkle tree + trie + compression.
   The linked page includes diagrams and a small example worth working through

@@ -4,8 +4,11 @@
 * [Bitcoin](Bitcoin.md)
 * [Ethereum](Ethereum.md)
 * [Solana](Solana.md)
-* [Cosmos](Cosmos.md)
 * [Terra](Terra.md)
+* [Avalanche](Avalanche.md)
+* [Polkadot](Polkadot.md)
+* [Polygon](Polygon.md)
+* [Cosmos](Cosmos.md)
 
 ## Historical / academic background
 

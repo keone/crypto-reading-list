@@ -77,8 +77,8 @@ _In-depth page: [NFT](NFT.md)_
 * [NFTs and a Thousand True Fans](https://future.a16z.com/nfts-thousand-true-fans/) (Chris Dixon, Feb 2021) -
   an argument for NFTs as enabling a better creator economy
 
-DAOs
-===============
+DAOs / Governance
+===================
 _In-depth page: [DAO](DAO.md)_
 * [Beginner's guide to DAOs](https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o) -
   (Mar 2021) Linda Xie provides examples of what DAOs can do (e.g. shared ownership of a valuable asset, governance)
@@ -90,8 +90,11 @@ _In-depth page: [L1](L1)_
 * [Bitcoin](L1/Bitcoin.md)
 * [Ethereum](L1/Ethereum.md)
 * [Solana](L1/Solana.md)
-* [Cosmos](L1/Cosmos.md)
 * [Terra](L1/Terra.md)
+* [Avalanche](L1/Avalanche.md)
+* [Polkadot](L1/Polkadot.md)
+* [Polygon](L1/Polygon.md)
+* [Cosmos](L1/Cosmos.md)
 
 L2s
 ===============
@@ -125,7 +128,7 @@ _In-depth page: [Tools](Tools.md)_
 
 Exercises
 ===========
-_In-depth page: [Exercises](Exercises.md)_
+Check your understanding with _[these thought questions and exercises](Exercises.md)._
 
 
 Directories
