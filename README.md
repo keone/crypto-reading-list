@@ -1,16 +1,18 @@
 crypto reading list
 ====================
+_WIP; draft 2021-12-21_
+
 A curated list for getting up to speed on crypto and decentralized networks.
 
 The content on the toplevel page contains what we consider essential reading.
 Child pages contain deeper, topic-specific information to review afterward.
 
-Crypto changes quickly, also we make mistakes! Please open a PR here or
+The lists here are a work in progress.  Please open a PR/issue here or
 reach out to [crypto-research@jumptrading.com](mailto:crypto-research@jumptrading.com)
-to report any errors or suggestions.
+with any suggestions, or to report any errors.
 
-_Nothing in this repo constitutes financial or legal advice.  Do your own research and
-develop your own conclusions._
+_Nothing in this repo constitutes financial or legal advice._
+
 
 Contents
 =========
@@ -22,10 +24,11 @@ Contents
 * [L1s](#l1s)
 * [L2s](#l2s)
 * [Trading mechanics](#trading-mechanics)
+* [Smart contract programming](#smart-contract-programming)
 * [Tools/Analytics](#toolsanalytics)
+* [Exercises](#exercises)
 * [Directories](#directories)
 * [Online courses](#online-courses)
-* [Exercises](#exercises)
 
 
 Why is crypto important?
@@ -38,8 +41,9 @@ Why is crypto important?
 * [7 things to read about bitcoin](https://www.paradigm.xyz/2020/05/7-things-to-read-about-bitcoin-for-institutional-investors/) (Matt Huang, 2020)
 * [Crypto tokens: a breakthrough in open design](https://cdixon.org/2017/05/27/crypto-tokens-a-breakthrough-in-open-network-design) (Chris Dixon, 2017) -
   tokens as an enabler for alignment between networks and their participants
-* [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) (Dec 2020) -
+* [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) (Hasu, Dec 2020) -
   noted researcher Hasu weighs in on the merits of protocol tokens, during a time when many cynics questioned the need for each project to have its own token
+* [How composability unlocks crypto](https://future.a16z.com/how-composability-unlocks-crypto-and-everything-else/) (Linda Xie, June 2021)
 
 Blockchain mechanics & innovations
 ====================================
@@ -49,13 +53,13 @@ Blockchain mechanics & innovations
 * [Ethereum whitepaper](https://ethereum.org/en/whitepaper/) -
   building on bitcoin to get smartcontracts; also a good explanation of _Bitcoin_
 * [Tendermint: Byzantine Fault Tolerance](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf) -
-  Overview of byzantine fault tolerant algorithms and how proof of stake chains can work.
+  Overview of Byzantine Fault Tolerant algorithms and how proof of stake chains can work.
 
 DeFi primitives
 ===========================
 _In-depth page: [DeFi](DeFi.md)_
 * [A beginner's guide to DeFi](https://nakamoto.com/beginners-guide-to-defi/) (Linda Xie, Jan 2020)
-* [AMMs](https://medium.com/dragonfly-research/what-explains-the-rise-of-amms-7d008af1c399) -
+* [AMMs](https://medium.com/dragonfly-research/what-explains-the-rise-of-amms-7d008af1c399) (Haseeb Qureshi, Jul 2020) -
   explaining the mechanics of the constant-product AMM popularized by Uniswap V2
 * [StableSwap AMMs](https://curve.fi/files/stableswap-paper.pdf) (2019) -
   explaining another AMM formulation for stable pairs of assets, pioneered by Curve.fi
@@ -108,9 +112,20 @@ _In-depth page: [TradingDynamics](TradingDynamics.md)_
 _In-depth page: [MEV/Arbitrage](MEV.md)_
 
 
+Smart contract programming
+============================
+_In-depth page: [Development](Dev)_
+
+
+
 Tools/Analytics
 ===============
 _In-depth page: [Tools](Tools.md)_
+
+
+Exercises
+===========
+_In-depth page: [Exercises](Exercises.md)_
 
 
 Directories
@@ -129,6 +144,3 @@ Online courses
 * [Berkeley DeFi](https://berkeley-defi.github.io/f21)
 
 
-Exercises
-=========
-_In-depth page: [Exercises](Exercises.md)_

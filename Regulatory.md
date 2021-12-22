@@ -1,5 +1,5 @@
-_Not financial or legal advice.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
-for suggestions or to report errors._
+Regulatory insights
+===================
 
 * [Digital Asset Transactions: When Howey Met Gary](https://www.sec.gov/news/speech/speech-hinman-061418) (2018) - 
   speech from SEC's Hinman offering thoughts on how digital assets may become sufficiently decentralized

@@ -1,9 +1,9 @@
-_Not financial or legal advice.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
-for suggestions or to report errors._
-
-# DeFi
+DeFi
+=====
 
 ## Contents
+* [Overview](#overview)
+* [Lending Protocols](#lending-protocols)
 * [AMMs](#amm-swap-according-to-a-formula-dexes)
 * [Serum](#serum---full-order-book)
 * [Stablecoins](#stablecoins)
@@ -11,6 +11,13 @@ for suggestions or to report errors._
 * [Governance](#governance-wars-and-defi)
 * [Tools](#tools)
 * [The Graph](#the-graph)
+
+## Overview
+* [Finematics guide to DeFi](https://finematics.com/guide-to-decentralized-finance/) - a skill tree of DeFi concepts
+
+## Lending protocols
+* [Aave whitepaper](https://github.com/aave/aave-protocol/blob/master/docs/Aave_Protocol_Whitepaper_v1_0.pdf) (Dec 2020)
+* [Compound whitepaper](https://compound.finance/documents/Compound.Whitepaper.pdf) (Feb 2019)
 
 ## DEX trading
 ### AMM (swap according to a formula) DEXes

@@ -1,11 +1,13 @@
-_Not financial or legal advice.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
-for suggestions or to report errors._
-
-DAOs
-======
+DAOs / Decentralized Governance
+================================
 
 ## Why
 * [The meaning of decentralization](https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274) (Feb 2017, Vitalik)
+
+## Challenges
+* [Moving beyond coin voting governance](https://vitalik.ca/general/2021/08/16/voting3.html) (Aug 2021, Vitalik) -
+  discussing challenges in existing simple coin-weighted voting schemes, as well as some high-profile governance attacks
+  like the hostile takeover of Steem
 
 ## How
 * [Aragon DAO knowledgebase](https://aragon.org/dao) - Aragon (a platform for DAO infrastructure) has a good list of explainers
