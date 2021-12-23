@@ -34,9 +34,10 @@ Contents
 Why is crypto important?
 ===========================
 * [Why decentralization matters](https://cdixon.org/2018/02/18/why-decentralization-matters) (Chris Dixon, 2018) -
-  discusses the pattern of new technology progressing from innovation to extraction (from cooperation with their ecosystem to eventual competition),
-  such as Apple initially encouraging developers to build on iOS, to now charging 30% on all in-store purchases.  Discusses how crypto solves this
-  by aligning the network with its participants.
+  discusses the pattern of new technology progressing from innovation to extraction (from cooperation with their 
+  ecosystem to eventual competition). For example consider Apple's transition from early days of encouraging 
+  developers to build on iOS, to now charging 30% on all in-store purchases.
+  Discusses how crypto solves this by aligning the network with its participants.
 * [Bitcoin for the open-minded skeptic](https://www.matthuang.com/bitcoin_for_the_open_minded_skeptic) (Matt Huang, 2020)
 * [7 things to read about bitcoin](https://www.paradigm.xyz/2020/05/7-things-to-read-about-bitcoin-for-institutional-investors/) (Matt Huang, 2020)
 * [Crypto tokens: a breakthrough in open design](https://cdixon.org/2017/05/27/crypto-tokens-a-breakthrough-in-open-network-design) (Chris Dixon, 2017) -
