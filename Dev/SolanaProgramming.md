@@ -34,11 +34,13 @@ Let's also take a look at the [Serum](https://github.com/project-serum/serum-dex
 The escrow tutorial is excellent, but it would be interesting to look at a directly relevant real-world program.
 
 - [Framing](#framing)
+- [Tooling](#tooling)
 - [On-chain programs](#on-chain-programs)
 - [Taking a look at Serum](#taking-a-look-at-serum)
 - [The importance of APIs and the bigger picture](#the-importance-of-apis-and-the-bigger-picture)
 - [How Serum evolved their API](#how-serum-evolved-their-api)
-- [Ownership](#ownership)
+- [Anchor](#anchor)
+- [Accounts](#accounts)
 - [Highlights](#highlights)
 - [Gotchas](#gotchas)
 
@@ -80,6 +82,8 @@ The `solana-program` crate exposes a `macro` aptly named `entrypoint!`
 - See the [helloworld example](https://github.com/solana-labs/example-helloworld/blob/master/src/program-rust/src/lib.rs)
 
 ### Taking a look at Serum
+
+<details>
 
 Let's take a look at something more complicated than "hello world!". How about a real-world example? The [Serum dex](https://github.com/project-serum/serum-dex) itself!
 
@@ -142,7 +146,11 @@ Interesting! So it looks like they deserialize the instructions then pattern mat
 
 As you might expect, these are standard instructions you'd run on an order book.
 
+</details>
+
 ### The importance of APIs and the bigger picture
+
+<details>
 
 One thing that stands out here is the `NewOrder`, `NewOrderV2`, `NewOrderV3` definitions, with the first two `unimplemented`.
 It looks a little funky. It appears to be handling for API versioning / compatibility.
@@ -151,6 +159,8 @@ Here is a key point: *a Solana program is ultimately an API*. As will all APIs, 
 - What are you going to do when your program logic changes?
 - How are you going to add features (API additions)?
 - How are you going to deprecate functionality (breaking changes)?
+
+</details>
 
 #### Ok, so why is this important?
 
@@ -175,6 +185,8 @@ Solana explicitly spells out some [backwards compatibility guidelines](https://d
 
 ### How Serum evolved their API
 
+<details>
+
 Take a look at this pull request releasing Dex V3, a **breaking change**:
 https://github.com/project-serum/serum-dex/pull/97. Here's the description:
 
@@ -193,7 +205,12 @@ PR Observations:
 - All affected instructions implemented a corresponding new version "V2" or "V3", e.g. `MarketInstruction::CancelOrderV2`
 - The old versions of the instruction were then removed by replacing the body with `unimplemented!`
 
+</details>
+
 ### Stateless pros and cons
+
+<details>
+
 _LISP programmers know the value of everything and the cost of nothing_
 
 Solana programs are **stateless**. What does that mean?
@@ -211,6 +228,8 @@ Pros:
 Cons:
 - Debugging can be difficult because a lot of data lives outside your program that you have to fetch with RPC
 - APIs for passing around accounts are not that friendly: they're passed as an array, so you have to remember the position-order
+
+</details>
 
 ### Anchor
 
