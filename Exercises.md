@@ -11,8 +11,10 @@ A collection of reading questions and exercises to help check for understanding.
 * What's a digital signature? Properties?
 * They both seem to take some input and scramble it to some output. Can we reuse the same function for both?
 * How does public-key cryptography relate?
-
-These are important prereqs, as mentioned in [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/).
+* Given a cryptographic hash function `h`, can you define an associative hash function `H` using another function `f`?
+  * You pick `f`
+  * `H(a, b) = f(h(a), h(b))`
+  * `H` should generally satisfy `H(a, H(b, c)) <=> H(H(a, b), c)`
 <details>
 
 #### Can we reuse the same function?
@@ -24,7 +26,33 @@ That's a bit literal, so a higher-level answer is that cryptographic hash functi
 which in turn requires the mathematical functions they use to have different properties.
 
 Reversibility happens to be one property directly in conflict.
+
+
+#### Associative hash function `H`
+
+The intuition is to pick an `f` you already know is associative.
+
+Let `f` be the associative string concatenation operator (`||`):
+
+```
+H(a, H(b, c))
+<=> f(h(a), f(h(b), h(c)))
+<=> h(a) || (h(b) || h(c))
+<=> h((a) || h(b)) || h(c)  # by the associative property of `||`
+<=> f((h(a), h(b)), h(c))
+<=> H(H(a, b), c)
+```
+
+There may be other `f`: concatenation is used here because it is simple and intuitive.
+It is also directly relevant to the exercise below on Merkle Trees.
+Merkle trees hash the concatenation itself, so `h(h(a) || h(b)).
+
+**Follow-up:** is concatenating two hashes cryptographically secure? Can `H` be a _cryptographic_ hash function?
+
+One way to answer is to revisit the above question "important properties of a cryptographic hash function"
+and think about whether concatenation would violate any of them.
 </details>
+
 
 ### Data structures
 
@@ -35,28 +63,29 @@ Describe a blockchain (data structure). What's the use-case?
 A blockchain is a linked list with hash pointers. Its components:
 
 * `.prev` pointer
-* Hash of the previous node ("block")
+* `.prev_hash` pointer (cryptographic hash of the previous node aka "block")
 
 The use-case is tamper detection. If any node in the blockchain is altered, we'll know because the hash will no longer match.
-Therefore, you can always check the blockchain is valid by iterating from the head of the list, for every `curr`, hashing `prev`, and checking that equals `curr.prev_hash`
+Therefore, you can always check the blockchain is valid by iterating from the head of the list
+
+Pseudocode: for every node `curr`, hash `prev` and check that result hash equals `curr.prev_hash`
 </details>
 
-What's a Merkle tree? What's the use-case?
+What's a Merkle tree? Use-case?
 
 <details>
 
 Merkle tree is a clever data structure to reduce time complexity by leveraging the fact hashes are composable.
 You can combine two hashes `H(h1, h2)` to produce a third hash `h3`. If either `h1` or `h2` change, `h3` changes.
 
-It takes `O(n)` time to verify a block is part of a blockchain, where `n` is the number of blocks.
-
+The use-case is efficient verification. It takes `O(n)` time to verify a block is part of a blockchain, where `n` is the number of blocks.
 This is because you have to start from the head and check the hashes until you get to that given block.
 
-Overlay a tree on the blockchain such that all the leaves of the tree correspond to the original blocks.
+With a Merkle tree, you overlay a tree on the blockchain such that all the leaves of the tree correspond to the original blocks.
 Each parent is a composite hash, and the parent's parent is a composite of composite hashes, and so on.
-[Diagram](https://en.bitcoinwiki.org/wiki/Merkle_tree)
+[Diagram](https://en.bitcoinwiki.org/wiki/Merkle_tree).
 
-Now, to prove a block is part of the chain, you only need a path through the tree. This is `O(h)`, where `h` is the height of the tree.
+Now, to verify a block is part of the chain, you only need a path through the tree. This is `O(h)`, where `h` is the height of the tree.
 Then, by keeping the tree balanced, the complexity is logarithmic.
 </details>
 
@@ -69,14 +98,14 @@ You are the designer of a currency `Doxxcoin`, and you want to implement a proto
 #### Rules
 * The definition of **anonymize** is to disassociate a given `Doxxcoin` from all its prior transactions and addresses.
 * `Doxxcoin` works like `Bitcoin`, so you can trace all a given coin's addresses using the transaction ledger.
-* You have the ability to mint and burn `Doxxcoin`. `Anoncoin` is just what we're calling the protocol.
-* Users should still be able transact with `Doxxcoin` after anonymization.
+* You have the ability to mint and burn `Doxxcoin` and `Anoncoin`.
+* Users should still be able to transact with `Doxxcoin` after anonymization.
 * For the sake of simplicity, disregard units or amounts.
 
 Assume also you have the means to construct a **zero-knowledge proof** that satisfies the predicate `Zk(f, x): ∃x, f(x) ∈ {s1, s2, ... , sn}`
 * **Predicate:** "There exists an `x` such that `f(x)` is in the set `S = {s1, s2, ..., sn}`"
 * **Zero-knowledge proof:** "I know `x` such that `f(x)` is in `S`, without giving away `x`"
-* You can pick what `f` and `x` are
+* You can pick what `f` and `x` are.
 * The Zk-proof can be treated as a black-box and used anywhere in the scheme.
 
 Can you come up with a cryptographic scheme `Anoncoin` that anonymizes `Doxxcoin`?
@@ -127,12 +156,14 @@ Indeed, a commitment is often explained using this envelope analogy.
 The `Anoncoin` scheme is as follows:
 1. Anonymize:
    1. Create a transaction with two inputs `commit(identity)` and `Doxxcoin`.
-   2. `commit(identity)` is added to the pool and the `Doxxcoin` is burned.
+   2. Mint an `Anoncoin` which represents the commitment `commit(identity)` and add it to a pool of `Anoncoin`.
+   3. The input `Doxxcoin` is burned.
 2. Redeem:
    1. Construct a Zk-proof `Zk(f, x)`, where `f = commit` and `x = identity`
    2. Then, the proof shows "I know `x`, where `f(x) = commit(identity)` and `f(x)` is in the pool of commitments `{s1, s2, ...}`" (see problem statement)
-   3. The `Anoncoin` protocol (pool custodian) verifies `Zk(f, x)`. Because it's zero-knowledge, `Anoncoin` does not learn what `x` is at any point.
-   4. `Anoncoin` outputs newly-minted `Doxxcoin` without ever knowing `identity`, thus anonymizing.
+   3. Here the commitment pool is in fact a pool of `Anoncoin`. The Zk-proof proves you minted one of the `Anoncoin` without revealing your identity (`x`).
+   4. The protocol (pool custodian) verifies `Zk(f, x)`.
+   5. The protocol then outputs newly-minted `Doxxcoin`. Because it's zero-knowledge, the protocol does not learn what your identity (`x`) is at any point, thus anonymizing.
 
 The beauty of Zk-proofs is everything can be done with pure cryptography. No trusted third-party needed.
 
