@@ -20,7 +20,7 @@ Contents
 * [Blockchain mechanics & innovations](#blockchain-mechanics--innovations)
 * [DeFi primitives](#defi-primitives)
 * [NFTs & digital identity](#nfts--digital-identity)
-* [DAOs](#daos)
+* [DAOs](#daos--governance)
 * [L1s](#l1s)
 * [L2s](#l2s)
 * [Trading mechanics](#trading-mechanics)
@@ -146,5 +146,3 @@ _In-depth page: [Other Lists](OtherLists.md)_
 Online courses
 ===============
 * [Berkeley DeFi](https://berkeley-defi.github.io/f21)
-
-

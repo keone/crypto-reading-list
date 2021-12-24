@@ -20,7 +20,7 @@ Ethereum
 _See also: [L2.md](../L2.md) for a description of rollups._
 
 ## Programming
-_See [Dev/EVM.md](../Dev/EVM.md)_
+_See [Dev/Solidity.md](../Dev/Solidity.md)_
   
 ## Ecosystem
 * [pentacle.ai/ethereum](https://pentacle.ai/ethereum)

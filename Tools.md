@@ -1,4 +1,4 @@
-_Not financial or legal advice.  Use all tools at your own risk.  Please contact [crypto-research@jumptrading.com](crypto-research@jumptrading.com)
+_Not financial or legal advice.  Use all tools at your own risk.  Please contact [crypto-research@jumptrading.com](mailto:crypto-research@jumptrading.com)
 for suggestions or to report errors._
 
 # Coin info

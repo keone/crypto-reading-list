@@ -13,7 +13,7 @@ Solana
   See also [Solana official postmortem](https://solana.com/news/9-14-network-outage-initial-overview)
 
 ## Ecosystem
-_see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
+_see also: [DeFi/Serum](../DeFi.md#serum---full-order-book) and [NFT/Solana](../NFT.md#solana)_
 * [pentacle.ai/solana](https://pentacle.ai/solana)
 * [awesome-solana](https://github.com/paul-schaaf/awesome-solana)
 * [how to solana](https://github.com/sinoglobalcap/how-to-solana) - an overview of important primitives in the Solana ecosystem from Sino Global
@@ -24,4 +24,4 @@ _see also: [DeFi/Serum](../DeFi.md#serum) and [NFT/Solana](../NFT.md#solana)_
 * [pyserum](https://github.com/serum-community/pyserum)
 
 ## Programming
-_See [SolanaProgramming](../Dev/Solana.md)_
+_See [SolanaProgramming](../Dev/SolanaProgramming.md)_
