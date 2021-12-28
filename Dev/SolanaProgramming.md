@@ -25,7 +25,15 @@ _More general Solana discussion: [L1/Solana.md](../L1/Solana.md)_
   walkthrough of an exploit in spl token-lending protocol identified by Neodyme, as an example of a flaw in a smart contract
 
 
-## Programming notes
+## Devtools
+* https://www.sollet.io/
+* https://www.spl-token-ui.com/#/
+* Essential CLI tools:
+  * `solana`
+  * `spl-token`
+  * `anchor`
+
+## Walkthrough
 *Please feel free to directly edit: fix inaccuracies, expand content, condense sections, etc.*
 
 Goal of this section: condense the above resources and compile useful tidbits (tips, gotchas) to reference in the future.
@@ -33,31 +41,35 @@ Goal of this section: condense the above resources and compile useful tidbits (t
 Let's also take a look at the [Serum](https://github.com/project-serum/serum-dex) code itself.
 The escrow tutorial is excellent, but it would be interesting to look at a directly relevant real-world program.
 
-- [Framing](#framing)
-- [Tooling](#tooling)
-- [On-chain programs](#on-chain-programs)
+- [Overview](#overview)
+- [Anchor and Escrow](#anchor-and-escrow)
+- [Walkthrough: Anchor and Escrow](#walkthrough-anchor-and-escrow)
 - [Taking a look at Serum](#taking-a-look-at-serum)
 - [The importance of APIs and the bigger picture](#the-importance-of-apis-and-the-bigger-picture)
 - [How Serum evolved their API](#how-serum-evolved-their-api)
-- [Anchor](#anchor)
 - [Accounts](#accounts)
 - [Highlights](#highlights)
 - [Gotchas](#gotchas)
 
-### Framing
+### Overview
 
-It might be useful to begin by mapping new technologies to familiar concepts.
-Doing this will help us form the mental model of what exactly we're programming.
+#### Framing
+Let's start by framing what Solana programming is. Doing this will help us form the mental model of what exactly we're programming.
 
 At the highest-level, you have two distinct notions of a **program** in Solana:
-- an on-chain program, i.e. a "smart contract" and what is literally known as a "program" in Solana parlance
-- an off-chain program, i.e. a "client" or "dApp" that interacts with the chain
+- an on-chain **program**. Analogous to "smart contract".
+- an off-chain **app**.
+
+Mapping this new vocabulary to familiar concepts:
+- Program: server, backend, _the thing that literally runs on the blockchain and executes the "Solana computer" instructions_
+- App: client, frontend, _the thing that doesn't run on the blockchain but talks to things that do"_
+
+As you can see, these ideas `Program` and `app` is the official Solana jargon.
 
 I find this analogous to any client-server interaction model, where the **server** is the on-chain program and the **client** is a dApp that interacts with it.
 In fact, **writing Solana programs is a lot like implementing RPC servers, REST endpoints, [insert distributed / IPC thing here]**.
 
-### Tooling
-
+#### Tooling
 Solana supports any programming language that can compile to [BPF bytecode](https://docs.solana.com/developing/on-chain-programs/overview).
 However, the vast majority of the ecosystem and tooling is in Rust. **All code in this tutorial is written in Rust, unless otherwise specified.**
 
@@ -67,8 +79,7 @@ Relevant Rust crates:
       which are published as their own crates, e.g. `spl-token`
 - `solana-sdk`, `solana-client` for off-chain programs
 
-### On-chain programs
-
+#### On-chain programs
 The `solana-program` crate exposes a `macro` aptly named `entrypoint!`
 
 - It follows the framework over library model, i.e. [they call you](https://en.wiktionary.org/wiki/Hollywood_principle)
@@ -81,9 +92,545 @@ The `solana-program` crate exposes a `macro` aptly named `entrypoint!`
     - Return the serialized outputs in a `ProgramResult`, a thin-wrapper around `std::result::Result`.
 - See the [helloworld example](https://github.com/solana-labs/example-helloworld/blob/master/src/program-rust/src/lib.rs)
 
-### Taking a look at Serum
+
+### Anchor and Escrow
+
+I kept the variable names, program structure exactly the same as the original Paulx Escrow tutorial.
+This way you can easily switch back-and-forth between the vanilla Solana version and Anchor version and see what's changed.
+
+> In particular, take close looks at `InitEscrow` and `Exchange`. You can see all the `next_account_info` is replaced with these two structs. 
+* This is known as **reification**. We've transformed _code into data_, thereby _reifying_ it.
+* The opposite of reification is **Church encoding** That is, turning _data into code_.
+* Turns out _code is data and data is code_. Read more [here](https://underscore.io/blog/posts/2017/06/02/uniting-church-and-state.html) if this excites you.
+
+_I discovered while writing this that Anchor has their own Escrow program.
+Their version has more features and makes use of more advanced Rust.
+This code should map more easily to the original tutorial and be easier to learn from.
+But Anchor's version would be the "idiomatic" solution._
+
+#### Program (Rust)
 
 <details>
+
+```rust
+use anchor_lang::prelude::*;
+use anchor_lang::solana_program::msg;
+use anchor_lang::solana_program::program::invoke;
+use anchor_lang::solana_program::program_option::COption;
+use anchor_spl::token;
+use anchor_spl::token::{Token, TokenAccount};
+use spl_token::instruction::AuthorityType;
+use spl_token::instruction::TokenInstruction::SetAuthority;
+use thiserror::Error;
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod anchor_escrow {
+    use super::*;
+
+    pub fn init_escrow(ctx: Context<InitEscrow>, amount: u64) -> ProgramResult {
+        let initializer = &ctx.accounts.initializer;
+
+        let temp_token_account = &ctx.accounts.temp_token_account;
+
+        let token_to_receive_account = &ctx.accounts.token_to_receive_account;
+
+        let escrow_account = &mut ctx.accounts.escrow_account;
+
+        let rent = &ctx.accounts.rent;
+        if !rent.is_exempt(
+            escrow_account.to_account_info().lamports(),
+            escrow_account.to_account_info().data_len(),
+        ) {
+            return Err(EscrowError::NotRentExempt.into());
+        }
+
+        escrow_account.initializer_pubkey = initializer.key();
+        escrow_account.temp_token_account_pubkey = temp_token_account.key();
+        escrow_account.initializer_token_to_receive_account_pubkey = token_to_receive_account.key();
+        escrow_account.expected_amount = amount;
+        msg!("{:?}", escrow_account.to_account_info());
+
+        let (pda, _) = Pubkey::find_program_address(&[b"escrow"], ctx.program_id);
+
+        msg!("{:?}", escrow_account.initializer_pubkey);
+        msg!("{:?}", escrow_account.temp_token_account_pubkey);
+        msg!(
+            "{:?}",
+            escrow_account.initializer_token_to_receive_account_pubkey
+        );
+        msg!("{:?}", escrow_account.expected_amount);
+
+        msg!("Calling the token program to transfer token account ownership...");
+        token::set_authority(
+            CpiContext::new(
+                ctx.accounts.token_program.to_account_info(),
+                token::SetAuthority {
+                    current_authority: initializer.to_account_info(),
+                    account_or_mint: temp_token_account.to_account_info(),
+                },
+            ),
+            AuthorityType::AccountOwner,
+            Some(pda),
+        )
+    }
+
+    pub fn exchange(ctx: Context<Exchange>, amount_expected_by_taker: u64) -> ProgramResult {
+        msg!("Calling the token program to transfer tokens to the escrow's initializer...");
+        token::transfer(
+            CpiContext::new(
+                ctx.accounts.token_program.to_account_info(),
+                token::Transfer {
+                    from: ctx.accounts.takers_sending_token_account.to_account_info(),
+                    to: ctx
+                        .accounts
+                        .initializers_token_to_receive_account
+                        .to_account_info(),
+                    authority: ctx.accounts.taker.to_account_info(),
+                },
+            ),
+            ctx.accounts.escrow_account.expected_amount,
+        )?;
+
+        let transfer_to_taker_ix = spl_token::instruction::transfer(
+            token_program.key,
+            pdas_temp_token_account.key,
+            takers_token_to_receive_account.key,
+            &pda,
+            &[&pda],
+            pdas_temp_token_account_info.amount,
+        )?;
+
+        let (pda, bump_seed) = Pubkey::find_program_address(&[b"escrow"], ctx.program_id);
+        token::transfer(
+            CpiContext::new_with_signer(
+                ctx.accounts.token_program.to_account_info(),
+                token::Transfer {
+                    from: ctx.accounts.pdas_temp_token_account.to_account_info(),
+                    to: ctx
+                        .accounts
+                        .takers_token_to_receive_account
+                        .to_account_info(),
+                    authority: a,
+                },
+                &[&[&b"escrow"[..], &[bump_seed]]],
+            ),
+            ctx.accounts.pdas_temp_token_account.amount,
+        )
+    }
+}
+
+#[derive(Accounts)]
+pub struct InitEscrow<'info> {
+    pub initializer: Signer<'info>,
+    #[account(mut, owner = spl_token::id())]
+    pub temp_token_account: Account<'info, TokenAccount>,
+    #[account(owner = spl_token::id())]
+    pub token_to_receive_account: Account<'info, TokenAccount>,
+    #[account(init, payer = initializer)]
+    pub escrow_account: Account<'info, Escrow>,
+    pub rent: Sysvar<'info, Rent>,
+    pub token_program: Program<'info, Token>,
+    pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct Exchange<'info> {
+    pub taker: Signer<'info>,
+    pub takers_sending_token_account: Account<'info, TokenAccount>,
+    pub takers_token_to_receive_account: Account<'info, TokenAccount>,
+    pub pdas_temp_token_account: Account<'info, TokenAccount>,
+    pub initializers_main_account: AccountInfo<'info>,
+    pub initializers_token_to_receive_account: Account<'info, TokenAccount>,
+    #[account(
+        mut,
+        constraint = escrow_account.temp_token_account_pubkey == pdas_temp_token_account.key(),
+        constraint = escrow_account.initializer_pubkey == initializers_main_account.key(),
+        constraint = escrow_account.initializer_token_to_receive_account_pubkey == initializers_token_to_receive_account.key(),
+        constraint = escrow_account.expected_amount == pdas_temp_token_account.amount,
+    )]
+    pub escrow_account: Account<'info, Escrow>,
+    pub pda_account: AccountInfo<'info>,
+    pub token_program: Program<'info, Token>,
+}
+
+#[account]
+#[derive(Default)]
+pub struct Escrow {
+    pub initializer_pubkey: Pubkey,
+    pub temp_token_account_pubkey: Pubkey,
+    pub initializer_token_to_receive_account_pubkey: Pubkey,
+    pub expected_amount: u64,
+}
+
+#[derive(Error, Debug, Copy, Clone)]
+pub enum EscrowError {
+    /// Invalid instruction
+    #[error("Invalid Instruction")]
+    InvalidInstruction,
+    #[error("Not Rent Exempt")]
+    NotRentExempt,
+}
+
+impl From<EscrowError> for ProgramError {
+    fn from(e: EscrowError) -> Self {
+        ProgramError::Custom(e as u32)
+    }
+}
+```
+</details>
+
+#### App (Typescript)
+
+Conveniently, our app will also serve as our "integration test" for the Escrow program above.
+It literally does RPC against your program deployed against your Solana localnet.
+Recall Anchor generates the scaffolding with `anchor init` and does everything with a single `anchor test`.
+
+<details>
+
+```typescript
+import * as anchor from '@project-serum/anchor';
+import {Program} from '@project-serum/anchor';
+import {AnchorEscrow} from '../target/types/anchor_escrow';
+import {AccountLayout, Token, TOKEN_PROGRAM_ID} from "@solana/spl-token";
+import * as BufferLayout from "buffer-layout";
+import {
+  Connection,
+  Keypair,
+  LAMPORTS_PER_SOL,
+  PublicKey,
+  SystemProgram,
+  SYSVAR_RENT_PUBKEY,
+  Transaction
+} from "@solana/web3.js";
+
+/**
+ * Layout for a public key
+ */
+const publicKey = (property = "publicKey") => {
+  return BufferLayout.blob(32, property);
+};
+
+/**
+ * Layout for a 64bit unsigned value
+ */
+const uint64 = (property = "uint64") => {
+  return BufferLayout.blob(8, property);
+};
+
+export const ESCROW_ACCOUNT_DATA_LAYOUT = BufferLayout.struct([
+  BufferLayout.u8("isInitialized"),
+  publicKey("initializerPubkey"),
+  publicKey("initializerTempTokenAccountPubkey"),
+  publicKey("initializerReceivingTokenAccountPubkey"),
+  uint64("expectedAmount"),
+]);
+
+export interface EscrowLayout {
+  isInitialized: number,
+  initializerPubkey: Uint8Array,
+  initializerReceivingTokenAccountPubkey: Uint8Array,
+  initializerTempTokenAccountPubkey: Uint8Array,
+  expectedAmount: Uint8Array
+}
+
+
+describe('anchorEscrow', () => {
+
+  // Configure the client to use the local cluster.
+  anchor.setProvider(anchor.Provider.env());
+
+  const program = anchor.workspace.AnchorEscrow as Program<AnchorEscrow>;
+  const connection = new Connection("http://localhost:8899", 'singleGossip');
+
+
+  it('initEscrow', async () => {
+    const admin = anchor.web3.Keypair.generate();
+
+    await connection.confirmTransaction(await connection.requestAirdrop(
+      admin.publicKey,
+      LAMPORTS_PER_SOL
+    ));
+
+    const tokenX = await Token.createMint(
+      connection,
+      admin,
+      new PublicKey(admin.publicKey),
+      null,
+      0,
+      TOKEN_PROGRAM_ID
+    );
+
+    const tokenY = await Token.createMint(
+      connection,
+      admin,
+      new PublicKey(admin.publicKey),
+      null,
+      0,
+      TOKEN_PROGRAM_ID
+    );
+
+    const initializerAccount = anchor.web3.Keypair.generate();
+    await connection.confirmTransaction(await connection.requestAirdrop(
+      initializerAccount.publicKey,
+      LAMPORTS_PER_SOL
+    ));
+
+    const initializerXTokenAccountPubkey = await tokenX.createAccount(initializerAccount.publicKey);
+    await tokenX.mintTo(initializerXTokenAccountPubkey, admin, [], 100);
+
+    const initializerReceivingTokenAccountPubkey = await tokenY.createAccount(initializerAccount.publicKey);
+
+    const XTokenMintAccountPubkey = new PublicKey((await connection.getParsedAccountInfo(initializerXTokenAccountPubkey, 'singleGossip')).value!.data.parsed.info.mint);
+
+    const tempTokenAccount = new Keypair();
+    const createTempTokenAccountIx = SystemProgram.createAccount({
+      programId: TOKEN_PROGRAM_ID,
+      space: AccountLayout.span,
+      lamports: await connection.getMinimumBalanceForRentExemption(AccountLayout.span, 'singleGossip'),
+      fromPubkey: initializerAccount.publicKey,
+      newAccountPubkey: tempTokenAccount.publicKey
+    });
+    const initTempAccountIx = Token.createInitAccountInstruction(TOKEN_PROGRAM_ID, XTokenMintAccountPubkey, tempTokenAccount.publicKey, initializerAccount.publicKey);
+
+    const amountXTokensToSendToEscrow = 1;
+    const transferXTokensToTempAccIx = Token
+      .createTransferInstruction(TOKEN_PROGRAM_ID, initializerXTokenAccountPubkey, tempTokenAccount.publicKey, initializerAccount.publicKey, [], amountXTokensToSendToEscrow);
+
+    const escrowAccount = new Keypair();
+
+    const initEscrowIx = program.instruction.initEscrow(
+      new anchor.BN(42),
+      {
+        accounts: {
+          initializer: initializerAccount.publicKey,
+          tempTokenAccount: tempTokenAccount.publicKey,
+          tokenToReceiveAccount: initializerReceivingTokenAccountPubkey,
+          escrowAccount: escrowAccount.publicKey,
+          rent: SYSVAR_RENT_PUBKEY,
+          tokenProgram: TOKEN_PROGRAM_ID,
+          systemProgram: SystemProgram.programId
+        }
+      })
+
+
+    const taker = anchor.web3.Keypair.generate();
+    await connection.confirmTransaction(await connection.requestAirdrop(
+      taker.publicKey,
+      LAMPORTS_PER_SOL
+    ));
+
+    const takersXTokenAccountPubkey = await tokenX.createAccount(initializerAccount.publicKey);
+    const takersYTokenAccountPubkey = await tokenY.createAccount(initializerAccount.publicKey);
+    await tokenY.mintTo(takersYTokenAccountPubkey, admin, [], 100);
+
+    const exchangeIx = program.instruction.exchange(
+      new anchor.BN(24),
+      {
+        accounts: {
+          taker: initializerAccount.publicKey,
+          tempTokenAccount: tempTokenAccount.publicKey,
+          tokenToReceiveAccount: initializerReceivingTokenAccountPubkey,
+          escrowAccount: escrowAccount.publicKey,
+          rent: SYSVAR_RENT_PUBKEY,
+          tokenProgram: TOKEN_PROGRAM_ID,
+          systemProgram: SystemProgram.programId
+        }
+      })
+
+    const tx = new Transaction()
+      .add(createTempTokenAccountIx, initTempAccountIx, transferXTokensToTempAccIx, initEscrowIx, exchangeIx);
+
+    await connection.confirmTransaction(
+      await connection.sendTransaction(tx, [initializerAccount, tempTokenAccount, escrowAccount], {
+        skipPreflight: false,
+        preflightCommitment: 'singleGossip'
+      })
+    );
+
+    // TDOO add assertions
+
+    // console.log(await connection.getAccountInfo(escrowAccount.publicKey, 'singleGossip'));
+    // const encodedEscrowState = (await connection.getAccountInfo(escrowAccount.publicKey, 'singleGossip'))!.data;
+    // const decodedEscrowState = ESCROW_ACCOUNT_DATA_LAYOUT.decode(encodedEscrowState) as EscrowLayout;
+    // console.log({
+    //   escrowAccountPubkey: escrowAccount.publicKey.toBase58(),
+    //   isInitialized: !!decodedEscrowState.isInitialized,
+    //   initializerAccountPubkey: new PublicKey(decodedEscrowState.initializerPubkey).toBase58(),
+    //   XTokenTempAccountPubkey: new PublicKey(decodedEscrowState.initializerTempTokenAccountPubkey).toBase58(),
+    //   initializerYTokenAccount: new PublicKey(decodedEscrowState.initializerReceivingTokenAccountPubkey).toBase58(),
+    //   expectedAmount: new BN(decodedEscrowState.expectedAmount, 10, "le").toNumber()
+    // });
+  });
+});
+```
+
+</details>
+
+
+### Walkthrough: Anchor and Escrow (WIP)
+_Anchor is framework for building and interacting with smart contracts on Solana. Think Ruby on Rails for Solana._
+
+"Vanilla" Solana programming is pretty low-level: you have to remember the position order of `accounts`, manually serialize/deserialize, etc.
+As programmers, we understand too well the value of **abstraction**. When was the last time you mapped a Python program to an x86 instruction? 
+That's hyperbolic, but you understand my point: Anchor is a framework roughly at the same level of what Flask does for Python web dev.
+
+But Anchor is also more than an abstraction layer. It supercharges your workflow: `anchor-cli` enables rapid-fire development.
+A single CLI command `anchor test` will build, deploy and "integration test" your Solana program all at once!
+Remember when your first discovered **hot-reloading** your web app with every code change? This feels exactly the same.
+
+#### Goals
+> 1. highlight why Anchor makes Solana programming easier by rewriting Escrow
+> 2. peel back Anchor's abstraction layers and understand how it translates to vanilla Solana
+> 3. make you "productive" ASAP, because now you write Solana programs with an automated feedback loop
+
+TODO notes:
+- abstract away input validation, ceremony, administrative vs. business logic, analogize to decorators in python
+
+#### Prereqs
+Run through `Getting Started` and `Tutorials` in the sidebar [here](https://project-serum.github.io/anchor/getting-started/introduction.html).
+
+I assume also you've worked through the Escrow tutorial:
+* https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/
+* TODO link to our Escrow post
+
+#### Setup
+If you ran through the above prereqs, then `anchor` is available as a command in your env.
+
+You should also be familiar with tokens and how to set them up. Here's a few ways:
+
+Or do it through the CLI:
+
+```sh
+# these commands all take arguments, but it's pretty intuitive what to do
+spl-token create-token
+spl-token create-account
+spl-token mint
+spl-token transfer
+```
+
+#### Step 1: Rapid-fire development
+Ok we're setup so let's implement Escrow using Anchor. Once we're done, you can compare for yourself how it compares to the vanilla version.
+
+**It's easy to forget to set mainnet-beta to localnet, so if it ever seems like data is missing from Web UIs check that first**
+
+Inside a directory:
+* `anchor init anchor-escrow`
+* `anchor test`
+
+> You can also choose to `anchor test --skip-local-validator`.
+> This option makes it so Anchor uses your existing Solana localnet vs. anchor spinning one up for the `test` workflow.
+
+One great feature of Anchor is rapid development cycles. To achieve that, we want to get `anchor test` in a good place.
+
+> What happened when you did these two steps?
+
+* Anchor generated both a Solana program and integration test client for you.
+  * The Solana program is a trivial "hello world" program. It's takes in an empty struct as input and does a `no-op`.
+  * The integration test client `anchor-escrow.ts` is a Typescript program that does RPC against your Solana program.
+* Anchor then ran a test using `mocha` (JS testing framework) to verify the behavior of your program.
+  * Since your program is a no-op, the test pretty much always passes as long as it can connect to the Solana localnet
+  
+This should mostly be familiar, if you worked through the above tutorial.
+
+As you can imagine, this enables a very fast feedback-loop:
+`change Solana program code -> change JS test -> anchor test -> repeat`
+
+
+#### Step 2: Peel back abstraction
+
+```typescript
+const tx = await program.rpc.initialize({});
+```
+
+Anchor magically setup this RPC call for you in the `anchor-escrow.ts`. What's actually happening?
+I find a good way to peel back abstraction is to implement the vanilla version yourself.
+
+```typescript
+import {Connection, Transaction, TransactionInstruction} from '@solana/web3.js';
+
+
+const conn = new Connection("http://localhost:8899", "singleGossip")
+const ix = new TransactionInstruction({
+  programId: "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+  keys: [],
+  data: null
+})
+const tx = new Transaction(ix);
+await conn.sendTransaction(tx)
+```
+
+Not so fast! The above code snippet has a bug. Try running `anchor-test` yourself. Can you spot them?
+
+<details>
+
+The error message you get should make the problem apparent: there's no signers.
+
+```
+  anchor-escrow
+    1) Is initialized!
+
+
+  0 passing (89ms)
+  1 failing
+
+  1) anchor-escrow
+       Is initialized!:
+     Error: No signers
+      at Transaction.sign (node_modules/@solana/web3.js/src/transaction.ts:450:13)
+      at Connection.sendTransaction (node_modules/@solana/web3.js/src/connection.ts:3615:21)
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+```
+
+The solution is to add a signer. Changing the line to:
+
+```typescript
+await conn.sendTransaction(tx, [aliceAccount]);
+```
+
+should do the trick.
+
+
+</details>
+
+There's another problem. Run `anchor test --skip-local-validator` again. Any ideas?
+
+<details>
+
+```
+Error: Account 37P5L6oGSYxcMVyqqeXkrPABGF1aShA2aL5RydzECFkM has insufficient funds for spend (1.06357848 SOL) + fee (0.000775 SOL)
+There was a problem deploying: Output { status: ExitStatus(unix_wait_status(256)), stdout: "", stderr: "" }.
+```
+
+Recall from the Anchor website's tutorial that Anchor accounts are prepended with an `8-byte-discriminator`.
+Anchor relies on this to add "types" over Solana accounts.
+
+This applies for instructions too: the `data` field is `null` above because our no-op program `initialize` also takes 0 arguments,
+but you still need to add the discriminatory like so:
+
+```typescript
+data: Buffer.from(sha256.digest("global:initialize")).slice(0, 8)
+```
+
+</details>
+
+Ok, we're good now. Recall from the Paulx Escrow tutorial that there was a bunch the `app` needed to do vs. the `program`.
+If you look at the Escrow tutorial [client-side code](https://github.com/paul-schaaf/solana-escrow/blob/master/scripts/src/alice.ts):
+
+`alice.ts` corresponds to the `initEscrow` instruction.
+
+So let's set up that same instruction using `Anchor`. First defining a struct:
+
+```rust
+
+
+```
+
+TODO continue walkthrough
+
+
+### Taking a look at Serum (WIP)
 
 Let's take a look at something more complicated than "hello world!". How about a real-world example? The [Serum dex](https://github.com/project-serum/serum-dex) itself!
 
@@ -146,11 +693,7 @@ Interesting! So it looks like they deserialize the instructions then pattern mat
 
 As you might expect, these are standard instructions you'd run on an order book.
 
-</details>
-
 ### The importance of APIs and the bigger picture
-
-<details>
 
 One thing that stands out here is the `NewOrder`, `NewOrderV2`, `NewOrderV3` definitions, with the first two `unimplemented`.
 It looks a little funky. It appears to be handling for API versioning / compatibility.
@@ -159,8 +702,6 @@ Here is a key point: *a Solana program is ultimately an API*. As will all APIs, 
 - What are you going to do when your program logic changes?
 - How are you going to add features (API additions)?
 - How are you going to deprecate functionality (breaking changes)?
-
-</details>
 
 #### Ok, so why is this important?
 
@@ -185,8 +726,6 @@ Solana explicitly spells out some [backwards compatibility guidelines](https://d
 
 ### How Serum evolved their API
 
-<details>
-
 Take a look at this pull request releasing Dex V3, a **breaking change**:
 https://github.com/project-serum/serum-dex/pull/97. Here's the description:
 
@@ -205,11 +744,7 @@ PR Observations:
 - All affected instructions implemented a corresponding new version "V2" or "V3", e.g. `MarketInstruction::CancelOrderV2`
 - The old versions of the instruction were then removed by replacing the body with `unimplemented!`
 
-</details>
-
-### Stateless pros and cons
-
-<details>
+### Solana programming pros and cons
 
 _LISP programmers know the value of everything and the cost of nothing_
 
@@ -229,31 +764,21 @@ Cons:
 - Debugging can be difficult because a lot of data lives outside your program that you have to fetch with RPC
 - APIs for passing around accounts are not that friendly: they're passed as an array, so you have to remember the position-order
 
-</details>
+[Anchor](https://project-serum.github.io/anchor/getting-started/introduction.html) aims to solve some of the cons described.
+See the above Anchor escrow tutorial as well as [angkor wat](https://2501babe.github.io/posts/anchor101.html).
 
-### Anchor
 
-This is a good segue to [Anchor](https://project-serum.github.io/anchor/getting-started/introduction.html).
-
-> Anchor is framework for building and interacting with smart contracts on Solana. Think Ruby on Rails for Solana.
-
-Anchor is an answer to the cons listed above.
-For example, in Anchor, instead of passing an array of accounts, you pass in a generic `Context<T>`,
-where `T` is a struct you define for your data.
-It also abstracts away boilerplate like serialization / deserialization.
-
-The above linked [angkor wat](https://2501babe.github.io/posts/anchor101.html) post has more details.
-
-### Accounts
+### Accounts (WIP)
 
 - Accounts are just bytearrays `&[u8]`.
 - Accounts have a `data` field for you to store arbitrary information
 - Executable accounts are programs
+- Types of account "types" in Anchor: Account, Program, Sysvar, different macros
 - Go into how Serum parses the account array into the literal information it needs to execute the order instruction
 
 
 
-### Highlights
+### Highlight
 
 > Solana programs are stateless
 
