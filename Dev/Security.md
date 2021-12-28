@@ -1,25 +1,27 @@
 Smart contract security
 ========================
 
-## Best practices
+## Education / best practices
 ### Ethereum
-* [Eth smart contract security best practices](https://consensys.github.io/smart-contract-best-practices/)
-  (see especially: [known attacks](https://consensys.github.io/smart-contract-best-practices/known_attacks/))
-* [Most common smart contract bugs](https://medium.com/solidified/most-common-smart-contract-bugs-of-2020-c1edfe9340ac)
-
+_See [Solidity/Security](Solidity.md#security)_
 ### Solana
-* [Solana common pitfalls](https://blog.neodyme.io/posts/solana_common_pitfalls) (Neodyme, Aug 2021)
-* [Auditing Solana smart contracts - Part 1 (checklist)](https://medium.com/coinmonks/how-to-audit-solana-smart-contracts-part-1-a-systematic-approach-56a434f6c9ed) (Nov 2021)
-  * [Part 2 (autoscanning)](https://medium.com/coinmonks/how-to-audit-solana-smart-contracts-part-2-automated-scanning-ceb88830ae6d)
-  * [Part 3 (penetration testing)](https://medium.com/coinmonks/how-to-audit-solana-smart-contracts-part-3-penetration-testing-a315b3bbb2d3)
-  * [Part 4 (anchor)](https://medium.com/coinmonks/how-to-audit-solana-smart-contracts-part-4-the-anchor-framework-ef42d944f086)
+_See [SolanaProgramming/Security](SolanaProgramming.md#security)_
+  
+## Bughunting challenges:
+* [Damn Vulnerable DeFi](https://www.damnvulnerabledefi.xyz/)
+* [OpenZeppelin Ethernaut](https://ethernaut.openzeppelin.com/)
+* [Capture the Ether](https://capturetheether.com/)
+* [Paradigm CTF 2021](https://github.com/paradigm-operations/paradigm-ctf-2021)
+* [Smart contract CTF list](https://github.com/PumpkingWok/CTFGym)
 
-## Aggregators
+  
+## Real-life vulnerabilities
+### Summaries
 * [Rekt leaderboard](https://rekt.news/leaderboard/)
 * [SlowMist stats](https://hacked.slowmist.io/en/) - brief summaries of each hack
 * [web3isgoinggreat.com](https://web3isgoinggreat.com/) - a (slanted) aggregator of recent hacks
 
-## Notable issues and incidents, explained
+### Notable issues and incidents, explained
 * [Poly network hack](https://slowmist.medium.com/the-analysis-and-q-a-of-poly-network-being-hacked-8112a35beb39) (Aug 2021)
   * more commentary [here](https://mudit.blog/poly-network-largest-crypto-hack/)
 * [Polygon PoS bridge withdrawal bug](https://medium.com/immunefi/polygon-double-spend-bug-fix-postmortem-2m-bounty-5a1db09db7f1) (Oct 2021)
@@ -39,8 +41,12 @@ Smart contract security
 * [bZx 2020 hack](https://peckshield.medium.com/bzx-hack-full-disclosure-with-detailed-profit-analysis-e6b1fa9b18fc) (Feb 2020)
   * a notable attack against a lending protocol that was fooled into taking a negative-value position
   * [another](https://www.palkeo.com/en/projets/ethereum/bzx.html) great description of this issue
+  * [another](https://lev.liv.nev.org.uk/pub/bzx_debug.txt) great description
 * [MonoX hack](https://twitter.com/Mudit__Gupta/status/1465726874974187524) (Nov 2021)
   * simple logical bug in vAMM protocol
+* [PancakeBunny reward overmint](https://medium.com/amber-group/bsc-flash-loan-attack-pancakebunny-3361b6d814fd) (May 2021)
+  * oracle manipulation attack on PancakeBunny AMM
+  * attacker gets way too many BUNNY reward tokens for LPing by unstaking in the middle of a massive mispricing from a flashloan
 * [MISO vulnerability](https://www.paradigm.xyz/2021/08/two-rights-might-make-a-wrong/) (Aug 2021)
   * batched delegatecall issue
 * [Enzyme finance custom oracle bug](https://medium.com/immunefi/enzyme-finance-price-oracle-manipulation-bug-fix-postmortem-4e1f3d4201b5)

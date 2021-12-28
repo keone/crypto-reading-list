@@ -1,29 +1,49 @@
 Solana programming
 ===================
-_More general Solana discussion: [L1/Solana.md](../L1/Solana.md)_
 
-## Tutorials/Reference
-* [Solana Programming (the "escrow tutorial")](https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/) -
-  the canonical tutorial on Solana programming by building up an escrow contract.  Warning: somewhat out of date
-* [Anchor](https://github.com/project-serum/anchor) - framework for reducing boilerplate by defining a IDL
-  connecting your rust program to your typescript code.
-  See also the [tutorial](https://github.com/project-serum/anchor/tree/master/examples/tutorial)
-    * [angkor wat](https://2501babe.github.io/posts/anchor101.html) - another post from 2501babe.github.io, this time about anchor programming
-* [Solana cookbook](https://solanacookbook.com/)
-* [solana-program-library](https://github.com/solana-labs/solana-program-library) -
-  a collection of examples and reference implementations
-* [Metaplex](https://github.com/metaplex-foundation/metaplex) -
-  defines the NFT standard on Solana; also standardized the minting process (candy machine).
-  See also [community docs](https://docs.metaplex.com/community).
-* [Rust programming on Solana](https://brson.github.io/2021/06/08/rust-on-solana) -
-  thoughtful opinions and useful tips by a Solana beginner who's very experienced in Rust (core developer)
+## Blockchain core concepts
+_See [L1/Solana.md](../L1/Solana.md)_
+* [Solana docs](https://docs.solana.com/introduction)
+
+## Tutorials
+* [Solana Programming (the "escrow tutorial")](https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/)
+  * the canonical tutorial on Solana programming by building up an escrow contract.  Warning: somewhat out of date
+* [Create a Solana dApp from scratch](https://lorisleiva.com/create-a-solana-dapp-from-scratch)
+* [Rust programming on Solana](https://brson.github.io/2021/06/08/rust-on-solana)
+  * thoughtful opinions and useful tips by a Solana beginner who's very experienced in Rust (core developer)
+* [SolDev.app library of walkthroughs](https://www.soldev.app/library/walkthroughs)
+  * We haven't validated all of the pages linked from here, but a large (and growing)
+    collection of links to helpful tutorials.
+* [thread from redacted_noah](https://twitter.com/redacted_noah/status/1475208069969756166) on the solana dev skill tree
+
+## Learning Rust
 * [Rust Lang book](https://doc.rust-lang.org/book/)
-  
+* [Exercism rust exercises](https://exercism.org/tracks/rust)
 
-## Discussion
+## Reference
+* [Solana docs](https://docs.solana.com/introduction)
+* [Solana cookbook](https://solanacookbook.com/)
+* [Anchor](https://github.com/project-serum/anchor)
+  * framework for reducing boilerplate by defining a IDL connecting your rust program to your typescript code.
+    See also the [tutorial](https://github.com/project-serum/anchor/tree/master/examples/tutorial).
+    * [angkor wat](https://2501babe.github.io/posts/anchor101.html) - another post from 2501babe.github.io, this time about anchor programming
+* [solana-program-library](https://github.com/solana-labs/solana-program-library)
+  * a collection of examples and reference implementations
+* [Metaplex](https://github.com/metaplex-foundation/metaplex)
+  * defines the NFT standard on Solana; also standardized the minting process (candy machine).
+  See also [community docs](https://docs.metaplex.com/community).
+
+## Security
+_See also: [Security.md](Security.md)_
+* [Solana common pitfalls](https://blog.neodyme.io/posts/solana_common_pitfalls) (Neodyme, Aug 2021)
+* [Solana Security Workshop](https://workshop.neodyme.io/) (Neodyme, Nov 2021)
+* [Auditing Solana smart contracts - Part 1 (checklist)](https://medium.com/coinmonks/how-to-audit-solana-smart-contracts-part-1-a-systematic-approach-56a434f6c9ed) (Nov 2021)
+  * [Part 2 (autoscanning)](https://medium.com/coinmonks/how-to-audit-solana-smart-contracts-part-2-automated-scanning-ceb88830ae6d)
+  * [Part 3 (penetration testing)](https://medium.com/coinmonks/how-to-audit-solana-smart-contracts-part-3-penetration-testing-a315b3bbb2d3)
+  * [Part 4 (anchor)](https://medium.com/coinmonks/how-to-audit-solana-smart-contracts-part-4-the-anchor-framework-ef42d944f086)
 * [spl token-lending protocol exploit](https://blog.neodyme.io/posts/lending_disclosure) -
   walkthrough of an exploit in spl token-lending protocol identified by Neodyme, as an example of a flaw in a smart contract
-
+* [Solend Auditing Workshop](https://docs.google.com/presentation/d/1jZ9kVo6hnhBsz3D2sywqpMojqLE5VTZtaXna7OHL1Uk/edit?pli=1#slide=id.ge15c343642_0_51)
 
 ## Devtools
 * https://www.sollet.io/

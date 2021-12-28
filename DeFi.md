@@ -14,6 +14,7 @@ DeFi
 
 ## Overview
 * [Finematics guide to DeFi](https://finematics.com/guide-to-decentralized-finance/) - a skill tree of DeFi concepts
+* [Where does yield come from, anyway?](https://juliankoh.medium.com/where-does-yield-come-from-anyway-fc818c114bd5)
 
 ## Lending protocols
 * [Aave whitepaper](https://github.com/aave/aave-protocol/blob/master/docs/Aave_Protocol_Whitepaper_v1_0.pdf) (Dec 2020)
@@ -44,6 +45,16 @@ DeFi
 * [Deleverging Spirals and Stablecoins Attacks](https://arxiv.org/pdf/1906.02152.pdf) -
   a deep dive into deleveraging spirals, mempool attacks and an empirical investigation of MakerDao's Black Thursday event 
 * [The Iron Finance Exploit Explained](https://thedefiant.io/not-just-a-bank-run-new-evidence-shows-iron-finance-crashed-due-to-code-exploit/) 
+
+## Bridges
+* [Bridge survey](https://medium.com/1kxnetwork/blockchain-bridges-5db6afac44f8)
+
+## Indexing
+* [Intro to The Graph](https://thegraph.com/docs/about/introduction)
+  * The Graph is a decentralized protocol for indexing and querying blockchain data.
+    It's like a search engine framework, and each 'subgraph' is a domain-specific search engine implementation
+  * [GraphQL API](https://thegraph.com/docs/developer/graphql-api) -
+    tutorial on how to query a subgraph using GraphQL
 
 ## Insurance
 * [Nexus Mutual (NXM) whitepaper](https://nexusmutual.io/assets/docs/nmx_white_paperv2_3.pdf)
@@ -90,9 +101,3 @@ Use these to track your (or anyone else's) balances/activity across various DeFi
 * [fees.wtf](http://fees.wtf) - check how much you have spent on ETH fees
 * [il.wtf](https://il.wtf) - check your cumulative IL
 
-## The Graph
-* [Introduction](https://thegraph.com/docs/about/introduction) -
-  The Graph is a decentralized protocol for indexing and querying blockchain data.
-  it's like a search engine framework, and each 'subgraph' is a domain-specific search engine implementation
-* [GraphQL API](https://thegraph.com/docs/developer/graphql-api) -
-  tutorial on how to query a subgraph using GraphQL
