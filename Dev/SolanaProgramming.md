@@ -105,8 +105,6 @@ But Anchor's version would be the "idiomatic" solution._
 
 #### Program (Rust)
 
-<details>
-
 ```rust
 use anchor_lang::prelude::*;
 use anchor_lang::solana_program::msg;
@@ -265,15 +263,12 @@ impl From<EscrowError> for ProgramError {
     }
 }
 ```
-</details>
 
 #### App (Typescript)
 
 Conveniently, our app will also serve as our "integration test" for the Escrow program above.
 It literally does RPC against your program deployed against your Solana localnet.
 Recall Anchor generates the scaffolding with `anchor init` and does everything with a single `anchor test`.
-
-<details>
 
 ```typescript
 import * as anchor from '@project-serum/anchor';
@@ -290,37 +285,6 @@ import {
   SYSVAR_RENT_PUBKEY,
   Transaction
 } from "@solana/web3.js";
-
-/**
- * Layout for a public key
- */
-const publicKey = (property = "publicKey") => {
-  return BufferLayout.blob(32, property);
-};
-
-/**
- * Layout for a 64bit unsigned value
- */
-const uint64 = (property = "uint64") => {
-  return BufferLayout.blob(8, property);
-};
-
-export const ESCROW_ACCOUNT_DATA_LAYOUT = BufferLayout.struct([
-  BufferLayout.u8("isInitialized"),
-  publicKey("initializerPubkey"),
-  publicKey("initializerTempTokenAccountPubkey"),
-  publicKey("initializerReceivingTokenAccountPubkey"),
-  uint64("expectedAmount"),
-]);
-
-export interface EscrowLayout {
-  isInitialized: number,
-  initializerPubkey: Uint8Array,
-  initializerReceivingTokenAccountPubkey: Uint8Array,
-  initializerTempTokenAccountPubkey: Uint8Array,
-  expectedAmount: Uint8Array
-}
-
 
 describe('anchorEscrow', () => {
 
@@ -436,23 +400,9 @@ describe('anchorEscrow', () => {
     );
 
     // TDOO add assertions
-
-    // console.log(await connection.getAccountInfo(escrowAccount.publicKey, 'singleGossip'));
-    // const encodedEscrowState = (await connection.getAccountInfo(escrowAccount.publicKey, 'singleGossip'))!.data;
-    // const decodedEscrowState = ESCROW_ACCOUNT_DATA_LAYOUT.decode(encodedEscrowState) as EscrowLayout;
-    // console.log({
-    //   escrowAccountPubkey: escrowAccount.publicKey.toBase58(),
-    //   isInitialized: !!decodedEscrowState.isInitialized,
-    //   initializerAccountPubkey: new PublicKey(decodedEscrowState.initializerPubkey).toBase58(),
-    //   XTokenTempAccountPubkey: new PublicKey(decodedEscrowState.initializerTempTokenAccountPubkey).toBase58(),
-    //   initializerYTokenAccount: new PublicKey(decodedEscrowState.initializerReceivingTokenAccountPubkey).toBase58(),
-    //   expectedAmount: new BN(decodedEscrowState.expectedAmount, 10, "le").toNumber()
-    // });
   });
 });
 ```
-
-</details>
 
 
 ### Walkthrough: Anchor and Escrow (WIP)
