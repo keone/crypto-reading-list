@@ -43,11 +43,11 @@ The escrow tutorial is excellent, but it would be interesting to look at a direc
 
 - [Overview](#overview)
 - [Anchor and Escrow](#anchor-and-escrow)
-- [Walkthrough: Anchor and Escrow](#walkthrough-anchor-and-escrow)
-- [Taking a look at Serum](#taking-a-look-at-serum)
+- [Walkthrough: Anchor and Escrow](#walkthrough-anchor-and-escrow-wip)
+- [Taking a look at Serum](#taking-a-look-at-serum-wip)
 - [The importance of APIs and the bigger picture](#the-importance-of-apis-and-the-bigger-picture)
 - [How Serum evolved their API](#how-serum-evolved-their-api)
-- [Accounts](#accounts)
+- [Accounts](#accounts-wip)
 - [Highlights](#highlights)
 - [Gotchas](#gotchas)
 
@@ -56,18 +56,13 @@ The escrow tutorial is excellent, but it would be interesting to look at a direc
 #### Framing
 Let's start by framing what Solana programming is. Doing this will help us form the mental model of what exactly we're programming.
 
-At the highest-level, you have two distinct notions of a **program** in Solana:
-- an on-chain **program**. Analogous to "smart contract".
-- an off-chain **app**.
+At the highest-level, you have two kinds of Solana programs:
+- an on-chain **program**. Analogous to "smart contract". Literally runs on the blockchain and executes "Solana computer instructions".
+- an off-chain **app**. Doesn't run on the blockchain but interacts with the programs that do.
 
-Mapping this new vocabulary to familiar concepts:
-- Program: server, backend, _the thing that literally runs on the blockchain and executes the "Solana computer" instructions_
-- App: client, frontend, _the thing that doesn't run on the blockchain but talks to things that do"_
-
-As you can see, these ideas `Program` and `app` is the official Solana jargon.
-
-I find this analogous to any client-server interaction model, where the **server** is the on-chain program and the **client** is a dApp that interacts with it.
+I find this analogous to any client-server interaction model, where the **server (backend)** is the on-chain program and the **client (frontend)** is an app that interacts with it.
 In fact, **writing Solana programs is a lot like implementing RPC servers, REST endpoints, [insert distributed / IPC thing here]**.
+On-chain programs can interact with other on-chain programs, just like how any server can also be a client.
 
 #### Tooling
 Solana supports any programming language that can compile to [BPF bytecode](https://docs.solana.com/developing/on-chain-programs/overview).
@@ -150,17 +145,8 @@ pub mod anchor_escrow {
         escrow_account.temp_token_account_pubkey = temp_token_account.key();
         escrow_account.initializer_token_to_receive_account_pubkey = token_to_receive_account.key();
         escrow_account.expected_amount = amount;
-        msg!("{:?}", escrow_account.to_account_info());
 
         let (pda, _) = Pubkey::find_program_address(&[b"escrow"], ctx.program_id);
-
-        msg!("{:?}", escrow_account.initializer_pubkey);
-        msg!("{:?}", escrow_account.temp_token_account_pubkey);
-        msg!(
-            "{:?}",
-            escrow_account.initializer_token_to_receive_account_pubkey
-        );
-        msg!("{:?}", escrow_account.expected_amount);
 
         msg!("Calling the token program to transfer token account ownership...");
         token::set_authority(
@@ -778,7 +764,7 @@ See the above Anchor escrow tutorial as well as [angkor wat](https://2501babe.gi
 
 
 
-### Highlight
+### Highlights
 
 > Solana programs are stateless
 
