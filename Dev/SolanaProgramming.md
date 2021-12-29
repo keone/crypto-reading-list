@@ -21,7 +21,7 @@ _See [L1/Solana.md](../L1/Solana.md)_
 ### Essential
 * [Rust Lang book ("The Book")](https://doc.rust-lang.org/book/)
   * written by Rust's own documentation team. A must-read for newcomers.
-  * [Rustlings](https://github.com/rust-lang/rustlings) The Book's companion CLI-based exercises.
+  * accompanying CLI-based [exercises](https://github.com/rust-lang/rustlings)
 * [Exercism rust exercises](https://exercism.org/tracks/rust)
 
 ### Bonus
