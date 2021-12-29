@@ -63,10 +63,10 @@ The escrow tutorial is excellent, but it would be interesting to look at a direc
 
 - [Overview](#overview)
 - [Anchor and Escrow](#anchor-and-escrow)
-- [Walkthrough: Anchor and Escrow](#walkthrough-anchor-and-escrow-wip)
-- [Taking a look at Serum](#taking-a-look-at-serum-wip)
-- [The importance of APIs and the bigger picture](#the-importance-of-apis-and-the-bigger-picture)
-- [How Serum evolved their API](#how-serum-evolved-their-api)
+- [Walkthrough: Anchor and Escrow (WIP)](#walkthrough-anchor-and-escrow-wip)
+- [Walkthrough: Serum (WIP)](#walkthrough-serum-wip)
+- [APIs and the bigger picture](#apis-and-the-bigger-picture)
+- [API evolution in Serum (WIP)](#api-evolution-in-serum-wip)
 - [Accounts](#accounts-wip)
 - [Highlights](#highlights)
 - [Gotchas](#gotchas)
@@ -115,8 +115,10 @@ This way you can easily switch back-and-forth between the vanilla Solana version
 
 > In particular, take close looks at `InitEscrow` and `Exchange`. You can see all the `next_account_info` is replaced with these two structs. 
 * This is known as **reification**. We've transformed _code into data_, thereby _reifying_ it.
-* The opposite of reification is **Church encoding** That is, turning _data into code_.
-* Turns out _code is data and data is code_. Read more [here](https://underscore.io/blog/posts/2017/06/02/uniting-church-and-state.html) if this excites you.
+* The inverse is **Church encoding**. Turning _data into code_.
+* Read more [here](https://underscore.io/blog/posts/2017/06/02/uniting-church-and-state.html) if this excites you.
+
+Mapping these Anchor patterns to familiar concepts can help explain the framework's design.
 
 _I discovered while writing this that Anchor has their own Escrow program.
 Their version has more features and makes use of more advanced Rust.
@@ -419,27 +421,28 @@ describe('anchorEscrow', () => {
       })
     );
 
-    // TDOO add assertions
+    // TODO add assertions
   });
 });
 ```
 
 
 ### Walkthrough: Anchor and Escrow (WIP)
-_Anchor is framework for building and interacting with smart contracts on Solana. Think Ruby on Rails for Solana._
+_Anchor is a framework for building and interacting with smart contracts on Solana. Think Ruby on Rails for Solana._
 
 "Vanilla" Solana programming is pretty low-level: you have to remember the position order of `accounts`, manually serialize/deserialize, etc.
-As programmers, we understand too well the value of **abstraction**. When was the last time you mapped a Python program to an x86 instruction? 
-That's hyperbolic, but you understand my point: Anchor is a framework roughly at the same level of what Flask does for Python web dev.
+As programmers, we understand too well the value of **abstraction**.
+When was the last time you thought about what x86 instructions your Python programming is executing? 
+That's hyperbolic, but you get the point: Anchor is a framework roughly at the same level of what Flask does for Python web dev.
 
-But Anchor is also more than an abstraction layer. It supercharges your workflow: `anchor-cli` enables rapid-fire development.
+But Anchor is more than an abstraction layer: it supercharges your workflow, enabling rapid-fire development.
 A single CLI command `anchor test` will build, deploy and "integration test" your Solana program all at once!
-Remember when your first discovered **hot-reloading** your web app with every code change? This feels exactly the same.
+Remember when you first discovered **hot-reloading** your web app with every code change? This feels exactly the same.
 
 #### Goals
-> 1. highlight why Anchor makes Solana programming easier by rewriting Escrow
-> 2. peel back Anchor's abstraction layers and understand how it translates to vanilla Solana
-> 3. make you "productive" ASAP, because now you write Solana programs with an automated feedback loop
+1. highlight why Anchor makes Solana programming easier by rewriting Escrow
+2. peel back Anchor's abstraction layers and understand how it translates to vanilla Solana
+3. make you "productive" ASAP, because now you write Solana programs with an automated feedback loop
 
 TODO notes:
 - abstract away input validation, ceremony, administrative vs. business logic, analogize to decorators in python
@@ -454,9 +457,7 @@ I assume also you've worked through the Escrow tutorial:
 #### Setup
 If you ran through the above prereqs, then `anchor` is available as a command in your env.
 
-You should also be familiar with tokens and how to set them up. Here's a few ways:
-
-Or do it through the CLI:
+You should also be familiar with tokens and how to set them up. One way is through the CLI:
 
 ```sh
 # these commands all take arguments, but it's pretty intuitive what to do
@@ -466,17 +467,18 @@ spl-token mint
 spl-token transfer
 ```
 
+Another way is UI tools: see the [dev tools](#devtools) above. It's easy to forget to set mainnet-beta to localnet, so if it ever seems like data is missing from Web UIs check that first.
+
+**You won't need to setup tokens for this Anchor Escrow walkthrough -- instead we'll create them in the RPC client with every run of `anchor test`.**
+
 #### Step 1: Rapid-fire development
-Ok we're setup so let's implement Escrow using Anchor. Once we're done, you can compare for yourself how it compares to the vanilla version.
-
-**It's easy to forget to set mainnet-beta to localnet, so if it ever seems like data is missing from Web UIs check that first**
-
 Inside a directory:
 * `anchor init anchor-escrow`
 * `anchor test`
 
 > You can also choose to `anchor test --skip-local-validator`.
 > This option makes it so Anchor uses your existing Solana localnet vs. anchor spinning one up for the `test` workflow.
+> We're **not** going to use our own localnet, instead letting `Anchor` do that for us.
 
 One great feature of Anchor is rapid development cycles. To achieve that, we want to get `anchor test` in a good place.
 
@@ -586,11 +588,11 @@ So let's set up that same instruction using `Anchor`. First defining a struct:
 TODO continue walkthrough
 
 
-### Taking a look at Serum (WIP)
+### Walkthrough: Serum (WIP)
 
-Let's take a look at something more complicated than "hello world!". How about a real-world example? The [Serum dex](https://github.com/project-serum/serum-dex) itself!
+Let's take a look at something more complicated than Escrow. How about the [Serum dex](https://github.com/project-serum/serum-dex) itself!
 
-To begin, let's examine the project structure. It looks like a monorepo: that is, both the on-chain program and client live in the same codebase.
+To begin, let's examine the project structure. It looks like a monorepo: both the on-chain *program* and the *app* live in the same codebase.
 
 Ok, now let's look for the entrypoint to the on-chain program. Remember that `entrypoint!` macro mentioned earlier? It's being called in `dex/src/lib.rs`:
 
@@ -649,7 +651,7 @@ Interesting! So it looks like they deserialize the instructions then pattern mat
 
 As you might expect, these are standard instructions you'd run on an order book.
 
-### The importance of APIs and the bigger picture
+### APIs and the bigger picture
 
 One thing that stands out here is the `NewOrder`, `NewOrderV2`, `NewOrderV3` definitions, with the first two `unimplemented`.
 It looks a little funky. It appears to be handling for API versioning / compatibility.
@@ -680,7 +682,7 @@ Don't chain yourself to previous iterations of your code either -- if your app h
 Solana explicitly spells out some [backwards compatibility guidelines](https://docs.solana.com/developing/backwards-compatibility).
 
 
-### How Serum evolved their API
+### API Evolution in Serum (WIP)
 
 Take a look at this pull request releasing Dex V3, a **breaking change**:
 https://github.com/project-serum/serum-dex/pull/97. Here's the description:
