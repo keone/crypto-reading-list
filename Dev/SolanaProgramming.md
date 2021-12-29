@@ -18,7 +18,20 @@ _See [L1/Solana.md](../L1/Solana.md)_
 
 ## Learning Rust
 * [Rust Lang book](https://doc.rust-lang.org/book/)
+  * known as "The Book": a must-read for newcomers.
+* [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html)
+  * companion text to The Book, in which each concept is accompanied with code.
+* [The Rustonomicon ("Nomicon")](https://doc.rust-lang.org/nomicon)
+  * the dark arts of unsafe Rust. A deep-dive into how Rust really works: very educational even if you plan to never use `unsafe`.
 * [Exercism rust exercises](https://exercism.org/tracks/rust)
+* [Rustlings](https://github.com/rust-lang/rustlings)
+  * authored by Rust's own documentation team, small CLI exercises to reinforce concepts from The Book.
+* [Learn Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/)
+  * linked lists aren't so simple after all! This tutorial / exercise book will force you deeply understand what Rust's memory model.
+* [Jon Gjengset's youtube videos](https://www.youtube.com/c/JonGjengset)
+  * educational streams showing how to apply Rust to real-world problems. Excellent teacher and answers many questions.
+* [Rust for Rustaceans](https://nostarch.com/rust-rustaceans)
+  * just-released book by Jon that is an excellent follow-up to The Book. Disclaimer: requires purchase (no affiliation).
 
 ## Reference
 * [Solana docs](https://docs.solana.com/introduction)
