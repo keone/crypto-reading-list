@@ -23,20 +23,26 @@ Price, official websites, stats, volume by venue, etc:
 
 # Analytics
 ## Address/token info
-* [Etherscan](http://etherscan.io) display info about transactions, wallet balances, etc.  There is a clone for ~every chain, such as [Solscan](http://solscan.io) for Solana.
+* [Etherscan](http://etherscan.io)
+  * display info about transactions, wallet balances, etc.  There is a clone for ~every chain, such as [Solscan](http://solscan.io) for Solana.
 * [Bloxy](https://bloxy.info/)
+  * tools for understanding callstacks in Ethereum transactions
+* [EthTx Transaction Decoder](https://ethtx.info/)
 * [Awesome crypto trackers](https://github.com/denisnazarov/awesome-crypto-trackers) - many trackers here
 
 ## On-chain analytics
-* [Dune Analytics](https://dune.xyz/) - analytics platform for Ethereum, featuring various datasets built from processing blockchain data
-* [Glassnode](https://glassnode.com/) -
-  on-chain analytics platform, featuring various datasets built from processing blockchain data
-* [Nansen](https://nansen.ai/) - wallet analytics (coin movements, large holders, big transactions, etc) for Ethereum.  Also some NFT tools.
-* [ETH Gas.watch](https://ethgas.watch/) - stats on historical/current Eth gas prices
+* [Dune Analytics](https://dune.xyz/)
+  * analytics platform for Ethereum, featuring various datasets built from processing blockchain data
+* [Glassnode](https://glassnode.com/)
+  * on-chain analytics platform, featuring various datasets built from processing blockchain data
+* [Nansen](https://nansen.ai/)
+  * wallet analytics (coin movements, large holders, big transactions, etc) for Ethereum.  Also some NFT tools.
+* [ETH Gas.watch](https://ethgas.watch/)
+  * stats on historical/current Eth gas prices
 
 ## Macro analytics
-* [The Block](https://www.theblockcrypto.com/data/) -
-  various timeseries graphs showing state of network utilization, volume, DeFi protocol utilization, marketshare by venue, etc.
+* [The Block](https://www.theblockcrypto.com/data/)
+  * various timeseries graphs showing state of network utilization, volume, DeFi protocol utilization, marketshare by venue, etc.
 
 # DeFi
 _For DeFi-related tools see [DeFi.md](DeFi.md)_
@@ -45,7 +51,8 @@ _For DeFi-related tools see [DeFi.md](DeFi.md)_
 _For NFT-related tools see [NFT.md](NFT.md)_
 
 # VC Activity
-* [dovemetrics.com](https://www.dovemetrics.com/) - an airtable-based database of recent crypto raises
+* [dovemetrics.com](https://www.dovemetrics.com/)
+  * an airtable-based database of recent crypto raises
 
 # Acknowledgement
 [This](https://twitter.com/0xShual/status/1463575819717070863) twitter thread from @0xShual was extremely useful as a starting point for this page.
