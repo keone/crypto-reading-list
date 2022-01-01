@@ -9,9 +9,6 @@ Programming in Solidity
 
 ## Security
 _Broader page: [Security.md](Security.md)_
-* [Eth smart contract security best practices](https://consensys.github.io/smart-contract-best-practices/)
-  (see especially: [known attacks](https://consensys.github.io/smart-contract-best-practices/known_attacks/))
-* [Most common smart contract bugs](https://medium.com/solidified/most-common-smart-contract-bugs-of-2020-c1edfe9340ac)
 
 ## Dev tools
 * Full toolkits for Solidity development:

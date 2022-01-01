@@ -7,7 +7,9 @@ _See [L1/Solana.md](../L1/Solana.md)_
 
 ## Tutorials
 * [Solana Programming (the "escrow tutorial")](https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/)
-  * the canonical tutorial on Solana programming by building up an escrow contract.  Warning: somewhat out of date
+  * the canonical tutorial on Solana programming by building up an escrow contract.  Warning: somewhat out of date;
+    does not use anchor at all
+* [Complete guide to full stack Solana development](https://dev.to/dabit3/the-complete-guide-to-full-stack-solana-development-with-react-anchor-rust-and-phantom-3291)
 * [Create a Solana dApp from scratch](https://lorisleiva.com/create-a-solana-dapp-from-scratch)
 * [Rust programming on Solana](https://brson.github.io/2021/06/08/rust-on-solana)
   * thoughtful opinions and useful tips by a Solana beginner who's very experienced in Rust (core developer)
@@ -15,6 +17,7 @@ _See [L1/Solana.md](../L1/Solana.md)_
   * We haven't validated all of the pages linked from here, but a large (and growing)
     collection of links to helpful tutorials.
 * [thread from redacted_noah](https://twitter.com/redacted_noah/status/1475208069969756166) on the solana dev skill tree
+* [thread from ayushmenon_](https://twitter.com/ayushmenon_/status/1476294409205526534)
 
 ## Learning Rust
 
