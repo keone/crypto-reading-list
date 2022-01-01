@@ -124,20 +124,29 @@ The `solana-program` crate exposes a `macro` aptly named `entrypoint!`
 
 ### Anchor and Escrow
 
+- Github repo available [here](https://git.w2k.jumptrading.com/chli/anchor-escrow)
+  - // TODO transfer to external jump github
+- Follow the *quickstart* in the README to quickly get up and running
+
+#### Summary
+- The "Program" lives inside `programs`.
+- The "App" (doubles as integration tests) lives inside `tests`.
+- The integration tests (mocha.js) are simple: they just make sure the balances line up after each escrow operation.
+
 I kept the variable names, program structure exactly the same as the original Paulx Escrow tutorial.
 This way you can easily switch back-and-forth between the vanilla Solana version and Anchor version and see what's changed.
+
+The only difference is the Escrow account is now crated by the Solana program vs. the client (Javascript) code as in the Paulx tutorial.
+See `#[account(init, payer = ...)]`
 
 > In particular, take close looks at `InitEscrow` and `Exchange`. You can see all the `next_account_info` is replaced with these two structs. 
 * This is known as **reification**. We've transformed _code into data_, thereby _reifying_ it.
 * The inverse is **Church encoding**. Turning _data into code_.
 * Read more [here](https://underscore.io/blog/posts/2017/06/02/uniting-church-and-state.html) if this excites you.
 
-Mapping these Anchor patterns to familiar concepts can help explain the framework's design.
-
-_I discovered while writing this that Anchor has their own Escrow program.
-Their version has more features and makes use of more advanced Rust.
-This code should map more easily to the original tutorial and be easier to learn from.
-But Anchor's version would be the "idiomatic" solution._
+_Note that Anchor has their own Escrow program.
+Their version implements an escrow program that is structured differently from Paulx: it supports cancellation, and makes use of more advanced and idiomatic Rust.
+The below version of escrow using Anchor that maps directly to the Paulx tutorial._
 
 #### Program (Rust)
 
@@ -156,6 +165,7 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 #[program]
 pub mod anchor_escrow {
+    use anchor_spl::token::accessor::amount;
     use super::*;
 
     pub fn init_escrow(ctx: Context<InitEscrow>, amount: u64) -> ProgramResult {
@@ -180,9 +190,9 @@ pub mod anchor_escrow {
         escrow_account.initializer_token_to_receive_account_pubkey = token_to_receive_account.key();
         escrow_account.expected_amount = amount;
 
-        let (pda, _) = Pubkey::find_program_address(&[b"escrow"], ctx.program_id);
-
         msg!("Calling the token program to transfer token account ownership...");
+        let (pda, bump_seed) = Pubkey::find_program_address(&[b"escrow"], ctx.program_id);
+        msg!("PDA {:?}", pda);
         token::set_authority(
             CpiContext::new(
                 ctx.accounts.token_program.to_account_info(),
@@ -198,6 +208,13 @@ pub mod anchor_escrow {
 
     pub fn exchange(ctx: Context<Exchange>, amount_expected_by_taker: u64) -> ProgramResult {
         msg!("Calling the token program to transfer tokens to the escrow's initializer...");
+        msg!("{:?}", ctx.accounts.takers_sending_token_account.to_account_info().key);
+        msg!("{:?}", ctx.accounts.initializers_token_to_receive_account.to_account_info().key);
+        msg!("{:?}", ctx.accounts.taker.to_account_info().key);
+
+        msg!("{:?}", ctx.accounts.escrow_account.expected_amount);
+        msg!("{:?}", ctx.accounts.pdas_temp_token_account.amount);
+
         token::transfer(
             CpiContext::new(
                 ctx.accounts.token_program.to_account_info(),
@@ -212,17 +229,7 @@ pub mod anchor_escrow {
             ),
             ctx.accounts.escrow_account.expected_amount,
         )?;
-
-        let transfer_to_taker_ix = spl_token::instruction::transfer(
-            token_program.key,
-            pdas_temp_token_account.key,
-            takers_token_to_receive_account.key,
-            &pda,
-            &[&pda],
-            pdas_temp_token_account_info.amount,
-        )?;
-
-        let (pda, bump_seed) = Pubkey::find_program_address(&[b"escrow"], ctx.program_id);
+        let (_, bump_seed) = Pubkey::find_program_address(&[b"escrow"], ctx.program_id);
         token::transfer(
             CpiContext::new_with_signer(
                 ctx.accounts.token_program.to_account_info(),
@@ -232,7 +239,7 @@ pub mod anchor_escrow {
                         .accounts
                         .takers_token_to_receive_account
                         .to_account_info(),
-                    authority: a,
+                    authority: ctx.accounts.pda_account.clone(),
                 },
                 &[&[&b"escrow"[..], &[bump_seed]]],
             ),
@@ -243,10 +250,11 @@ pub mod anchor_escrow {
 
 #[derive(Accounts)]
 pub struct InitEscrow<'info> {
+    #[account(mut)]
     pub initializer: Signer<'info>,
-    #[account(mut, owner = spl_token::id())]
+    #[account(mut)]
     pub temp_token_account: Account<'info, TokenAccount>,
-    #[account(owner = spl_token::id())]
+    #[account(mut)]
     pub token_to_receive_account: Account<'info, TokenAccount>,
     #[account(init, payer = initializer)]
     pub escrow_account: Account<'info, Escrow>,
@@ -258,17 +266,21 @@ pub struct InitEscrow<'info> {
 #[derive(Accounts)]
 pub struct Exchange<'info> {
     pub taker: Signer<'info>,
+    #[account(mut)]
     pub takers_sending_token_account: Account<'info, TokenAccount>,
+    #[account(mut)]
     pub takers_token_to_receive_account: Account<'info, TokenAccount>,
+    #[account(mut)]
     pub pdas_temp_token_account: Account<'info, TokenAccount>,
-    pub initializers_main_account: AccountInfo<'info>,
+    pub initializer: AccountInfo<'info>,
+    #[account(mut)]
     pub initializers_token_to_receive_account: Account<'info, TokenAccount>,
     #[account(
-        mut,
-        constraint = escrow_account.temp_token_account_pubkey == pdas_temp_token_account.key(),
-        constraint = escrow_account.initializer_pubkey == initializers_main_account.key(),
-        constraint = escrow_account.initializer_token_to_receive_account_pubkey == initializers_token_to_receive_account.key(),
-        constraint = escrow_account.expected_amount == pdas_temp_token_account.amount,
+    mut,
+    constraint = escrow_account.temp_token_account_pubkey == pdas_temp_token_account.key(),
+    constraint = escrow_account.initializer_pubkey == initializer.key(),
+    constraint = escrow_account.initializer_token_to_receive_account_pubkey == initializers_token_to_receive_account.key(),
+    // constraint = escrow_account.expected_amount == pdas_temp_token_account.amount,
     )]
     pub escrow_account: Account<'info, Escrow>,
     pub pda_account: AccountInfo<'info>,
@@ -311,7 +323,6 @@ import * as anchor from '@project-serum/anchor';
 import {Program} from '@project-serum/anchor';
 import {AnchorEscrow} from '../target/types/anchor_escrow';
 import {AccountLayout, Token, TOKEN_PROGRAM_ID} from "@solana/spl-token";
-import * as BufferLayout from "buffer-layout";
 import {
   Connection,
   Keypair,
@@ -321,123 +332,151 @@ import {
   SYSVAR_RENT_PUBKEY,
   Transaction
 } from "@solana/web3.js";
+import * as assert from "assert";
 
 describe('anchorEscrow', () => {
-
   // Configure the client to use the local cluster.
   anchor.setProvider(anchor.Provider.env());
 
   const program = anchor.workspace.AnchorEscrow as Program<AnchorEscrow>;
   const connection = new Connection("http://localhost:8899", 'singleGossip');
 
+  let admin;
+  let tokenX: Token;
+  let tokenY: Token;
+  let initializer: Keypair;
+  let initializerTokensX: PublicKey;
+  let initializerTokensY: PublicKey;
+  let taker: Keypair;
+  let takerTokensX: PublicKey;
+  let takerTokensY: PublicKey;
+  let tempTokenAccount: Keypair;
+  let escrowAccount: Keypair;
 
-  it('initEscrow', async () => {
-    const admin = anchor.web3.Keypair.generate();
+  const amountX = 42;
+  const amountY = 24;
 
+  it('setup', async () => {
+    admin = anchor.web3.Keypair.generate();
     await connection.confirmTransaction(await connection.requestAirdrop(
-      admin.publicKey,
-      LAMPORTS_PER_SOL
+        admin.publicKey,
+        LAMPORTS_PER_SOL
     ));
 
-    const tokenX = await Token.createMint(
-      connection,
-      admin,
-      new PublicKey(admin.publicKey),
-      null,
-      0,
-      TOKEN_PROGRAM_ID
+    // Set up Token Mint
+    tokenX = await Token.createMint(
+        connection,
+        admin,
+        admin.publicKey,
+        null,
+        0,
+        TOKEN_PROGRAM_ID
+    );
+    tokenY = await Token.createMint(
+        connection,
+        admin,
+        admin.publicKey,
+        null,
+        0,
+        TOKEN_PROGRAM_ID
     );
 
-    const tokenY = await Token.createMint(
-      connection,
-      admin,
-      new PublicKey(admin.publicKey),
-      null,
-      0,
-      TOKEN_PROGRAM_ID
-    );
-
-    const initializerAccount = anchor.web3.Keypair.generate();
+    // Alice
+    initializer = anchor.web3.Keypair.generate();
     await connection.confirmTransaction(await connection.requestAirdrop(
-      initializerAccount.publicKey,
-      LAMPORTS_PER_SOL
+        initializer.publicKey,
+        LAMPORTS_PER_SOL
     ));
+    initializerTokensX = await tokenX.createAccount(initializer.publicKey);
+    await tokenX.mintTo(initializerTokensX, admin, [], 100);
+    initializerTokensY = await tokenY.createAccount(initializer.publicKey);
 
-    const initializerXTokenAccountPubkey = await tokenX.createAccount(initializerAccount.publicKey);
-    await tokenX.mintTo(initializerXTokenAccountPubkey, admin, [], 100);
+    // Bob
+    taker = anchor.web3.Keypair.generate();
+    await connection.confirmTransaction(await connection.requestAirdrop(
+        taker.publicKey,
+        LAMPORTS_PER_SOL
+    ));
+    takerTokensX = await tokenX.createAccount(taker.publicKey);
+    takerTokensY = await tokenY.createAccount(taker.publicKey);
+    await tokenY.mintTo(takerTokensY, admin, [], 100);
 
-    const initializerReceivingTokenAccountPubkey = await tokenY.createAccount(initializerAccount.publicKey);
-
-    const XTokenMintAccountPubkey = new PublicKey((await connection.getParsedAccountInfo(initializerXTokenAccountPubkey, 'singleGossip')).value!.data.parsed.info.mint);
-
-    const tempTokenAccount = new Keypair();
+    // setting up input accounts for escrow
+    // includes setting up Alice's "tempTokenAccount" as described in the tutorial
+    // it's kind of pointless in a unit test, but i'm doing it just for completeness
+    tempTokenAccount = anchor.web3.Keypair.generate();
+    escrowAccount = anchor.web3.Keypair.generate();
+    const XTokenMintAccountPubkey = new PublicKey((await connection.getParsedAccountInfo(initializerTokensX, 'singleGossip')).value!.data.parsed.info.mint);
     const createTempTokenAccountIx = SystemProgram.createAccount({
       programId: TOKEN_PROGRAM_ID,
       space: AccountLayout.span,
       lamports: await connection.getMinimumBalanceForRentExemption(AccountLayout.span, 'singleGossip'),
-      fromPubkey: initializerAccount.publicKey,
+      fromPubkey: initializer.publicKey,
       newAccountPubkey: tempTokenAccount.publicKey
     });
-    const initTempAccountIx = Token.createInitAccountInstruction(TOKEN_PROGRAM_ID, XTokenMintAccountPubkey, tempTokenAccount.publicKey, initializerAccount.publicKey);
-
-    const amountXTokensToSendToEscrow = 1;
-    const transferXTokensToTempAccIx = Token
-      .createTransferInstruction(TOKEN_PROGRAM_ID, initializerXTokenAccountPubkey, tempTokenAccount.publicKey, initializerAccount.publicKey, [], amountXTokensToSendToEscrow);
-
-    const escrowAccount = new Keypair();
-
-    const initEscrowIx = program.instruction.initEscrow(
-      new anchor.BN(42),
-      {
-        accounts: {
-          initializer: initializerAccount.publicKey,
-          tempTokenAccount: tempTokenAccount.publicKey,
-          tokenToReceiveAccount: initializerReceivingTokenAccountPubkey,
-          escrowAccount: escrowAccount.publicKey,
-          rent: SYSVAR_RENT_PUBKEY,
-          tokenProgram: TOKEN_PROGRAM_ID,
-          systemProgram: SystemProgram.programId
-        }
-      })
-
-
-    const taker = anchor.web3.Keypair.generate();
-    await connection.confirmTransaction(await connection.requestAirdrop(
-      taker.publicKey,
-      LAMPORTS_PER_SOL
-    ));
-
-    const takersXTokenAccountPubkey = await tokenX.createAccount(initializerAccount.publicKey);
-    const takersYTokenAccountPubkey = await tokenY.createAccount(initializerAccount.publicKey);
-    await tokenY.mintTo(takersYTokenAccountPubkey, admin, [], 100);
-
-    const exchangeIx = program.instruction.exchange(
-      new anchor.BN(24),
-      {
-        accounts: {
-          taker: initializerAccount.publicKey,
-          tempTokenAccount: tempTokenAccount.publicKey,
-          tokenToReceiveAccount: initializerReceivingTokenAccountPubkey,
-          escrowAccount: escrowAccount.publicKey,
-          rent: SYSVAR_RENT_PUBKEY,
-          tokenProgram: TOKEN_PROGRAM_ID,
-          systemProgram: SystemProgram.programId
-        }
-      })
-
-    const tx = new Transaction()
-      .add(createTempTokenAccountIx, initTempAccountIx, transferXTokensToTempAccIx, initEscrowIx, exchangeIx);
-
+    const initTempAccountIx = Token.createInitAccountInstruction(TOKEN_PROGRAM_ID, XTokenMintAccountPubkey, tempTokenAccount.publicKey, initializer.publicKey);
+    const transferXTokensToTempAccIx = Token.createTransferInstruction(
+        TOKEN_PROGRAM_ID, initializerTokensX, tempTokenAccount.publicKey, initializer.publicKey, [], amountX);
+    const tx = new Transaction().add(createTempTokenAccountIx, initTempAccountIx, transferXTokensToTempAccIx);
     await connection.confirmTransaction(
-      await connection.sendTransaction(tx, [initializerAccount, tempTokenAccount, escrowAccount], {
-        skipPreflight: false,
-        preflightCommitment: 'singleGossip'
-      })
+        await connection.sendTransaction(tx, [initializer, tempTokenAccount], {
+          skipPreflight: false,
+          preflightCommitment: 'singleGossip'
+        })
     );
+  })
 
-    // TODO add assertions
+  it('initEscrow', async () => {
+    await program.rpc.initEscrow(
+        new anchor.BN(amountY),
+        {
+          accounts: {
+            initializer: initializer.publicKey,
+            tempTokenAccount: tempTokenAccount.publicKey,
+            tokenToReceiveAccount: initializerTokensY,
+            escrowAccount: escrowAccount.publicKey,
+            rent: SYSVAR_RENT_PUBKEY,
+            tokenProgram: TOKEN_PROGRAM_ID,
+            systemProgram: SystemProgram.programId
+          },
+          signers: [initializer, escrowAccount]
+        })
+    assert.equal(await getBalance(tokenX, initializerTokensX), 100 - amountX);
+    assert.equal(await getBalance(tokenX, tempTokenAccount.publicKey), amountX);
+    assert.equal((await program.account.escrow.fetch(escrowAccount.publicKey)).expectedAmount.toNumber(), amountY);
+  })
+
+  it('exchange', async () => {
+    const [pda, _] = await PublicKey.findProgramAddress(
+        [Buffer.from(anchor.utils.bytes.utf8.encode("escrow"))],
+        program.programId
+    );
+    const tx = await program.rpc.exchange(
+        new anchor.BN(amountY),
+        {
+          accounts: {
+            taker: taker.publicKey,
+            takersSendingTokenAccount: takerTokensY,
+            takersTokenToReceiveAccount: takerTokensX,
+            pdasTempTokenAccount: tempTokenAccount.publicKey,
+            initializer: initializer.publicKey,
+            initializersTokenToReceiveAccount: initializerTokensY,
+            escrowAccount: escrowAccount.publicKey,
+            pdaAccount: pda,
+            tokenProgram: TOKEN_PROGRAM_ID
+          },
+          signers: [taker]
+        }
+    );
+    await connection.confirmTransaction(tx);
+    assert.equal(await getBalance(tokenX, initializerTokensX), 100 - amountX);
+    assert.equal(await getBalance(tokenY, initializerTokensY), amountY);
+    assert.equal(await getBalance(tokenX, takerTokensX), amountX);
+    assert.equal(await getBalance(tokenY, takerTokensY), 100 - amountY);
   });
 });
+
+const getBalance = async (token: Token, publicKey: PublicKey) => (await token.getAccountInfo(publicKey)).amount.toNumber()
 ```
 
 
