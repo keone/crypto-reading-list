@@ -17,8 +17,12 @@ DeFi
 * [Where does yield come from, anyway?](https://juliankoh.medium.com/where-does-yield-come-from-anyway-fc818c114bd5)
 
 ## Lending protocols
-* [Aave whitepaper](https://github.com/aave/aave-protocol/blob/master/docs/Aave_Protocol_Whitepaper_v1_0.pdf) (Dec 2020)
-* [Compound whitepaper](https://compound.finance/documents/Compound.Whitepaper.pdf) (Feb 2019)
+* [Lending and borrowing in DeFi](https://finematics.com/lending-and-borrowing-in-defi-explained/) (Finematics, Nov 2020)
+* [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/)
+  * explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
+* Optional source material:
+  * [Aave whitepaper](https://github.com/aave/aave-protocol/blob/master/docs/Aave_Protocol_Whitepaper_v1_0.pdf) (Dec 2020)
+  * [Compound whitepaper](https://compound.finance/documents/Compound.Whitepaper.pdf) (Feb 2019)
 
 ## DEX trading
 ### AMM (swap according to a formula) DEXes
