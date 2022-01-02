@@ -34,6 +34,9 @@ DeFi
 * [technical introduction](https://docs.google.com/document/d/1isGJES4jzQutI0GtQGuqtrBUqeHxl_xJNXdtOv4SdII/edit) -
   describes the orderbook interactions and data structures, as well as how they're implemented. Warning: not updated for DexV3
 
+### Derivatives
+* [DeFi Derivative Landscape](https://github.com/0xperp/defi-derivatives)
+
 ## Stablecoins
 * [Stablecoin Overview](https://www.youtube.com/watch?v=0XB_2O6FsIk) - 
   a general overview of the stablecoin landscape and key differentiators for categorization
@@ -48,6 +51,10 @@ DeFi
 
 ## Bridges
 * [Bridge survey](https://medium.com/1kxnetwork/blockchain-bridges-5db6afac44f8)
+
+## Oracles
+* [The Oralce Report of Delphi](https://members.delphidigital.io/reports/the-oracle-report-of-delphi/) (June 2021) -
+  overview of the oracle landscape
 
 ## Indexing
 * [Intro to The Graph](https://thegraph.com/docs/about/introduction)

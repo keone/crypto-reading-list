@@ -2,18 +2,18 @@ NFTs
 ====
 
 ## Background
-* [Beginner's guide to NFTs](https://linda.mirror.xyz/df649d61efb92c910464a4e74ae213c4cab150b9cbcc4b7fb6090fc77881a95d) (Linda Xie, Jan 2021)
-* [The Value Chain of the Open Metaverse](https://www.notboring.co/p/the-value-chain-of-the-open-metaverse) (Packy McCormick, Jan 2021) - 
+* [Beginner's guide to NFTs](https://linda.mirror.xyz/df649d61efb92c910464a4e74ae213c4cab150b9cbcc4b7fb6090fc77881a95d) (Jan 2021)
+* [The Value Chain of the Open Metaverse](https://www.notboring.co/p/the-value-chain-of-the-open-metaverse) (Jan 2021) - 
   a bull case for the growth of the metaverse
 
 ## Fractionalization
 * [What are fractionalized NFTs](https://www.argent.xyz/learn/fractionalized-nfts/) (Sep 2021)
 
 ## Social Tokens
-* [Beginner's guide to social tokens](https://linda.mirror.xyz/4PDBWBMpFFPVEsP5EGgg5to2AyEpEHEXasq_K0b-yYk) (Linda Xie, Nov 2021)
+* [Beginner's guide to social tokens](https://linda.mirror.xyz/4PDBWBMpFFPVEsP5EGgg5to2AyEpEHEXasq_K0b-yYk) (Nov 2021)
 
 ## Minting
-* [Guide to designing effective NFT launches](https://www.paradigm.xyz/2021/10/a-guide-to-designing-effective-nft-launches/) -
+* [Guide to designing effective NFT launches](https://www.paradigm.xyz/2021/10/a-guide-to-designing-effective-nft-launches/) (Oct 2021) -
   discussing botting and mint-sniping and ways to combat them
 
 ## Other Lists
