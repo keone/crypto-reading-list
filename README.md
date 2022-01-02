@@ -44,19 +44,19 @@ In a few words, we'd say it is:
 * enabling an incentive model for these open networks to grow via crypto tokens
 
 Here's the list:
-* [Crypto tokens: a breakthrough in open design](https://cdixon.org/2017/05/27/crypto-tokens-a-breakthrough-in-open-network-design) (Chris Dixon, 2017)
+* [Crypto tokens: a breakthrough in open design](https://cdixon.org/2017/05/27/crypto-tokens-a-breakthrough-in-open-network-design) (2017)
   * tokens as an enabler for alignment between networks and their participants
-* [Why decentralization matters](https://cdixon.org/2018/02/18/why-decentralization-matters) (Chris Dixon, 2018)
+* [Why decentralization matters](https://cdixon.org/2018/02/18/why-decentralization-matters) (2018)
   * discusses the pattern of new technology progressing from innovation to extraction (from cooperation with their 
     ecosystem to eventual competition). For example consider Apple's transition from early days of encouraging 
     developers to build on iOS, to now charging 30% on all in-store purchases.
     Discusses how crypto solves this by aligning the network with its participants.
 * [The true power of DeFi composability](https://medium.com/coinmonks/the-true-power-of-defi-composability-14fe8355e0d0) (Apr 2021)
-* [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) (Hasu, Dec 2020)
+* [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) (Dec 2020)
   * noted researcher Hasu weighs in on the merits of protocol tokens, during a time when many cynics questioned the need for each project to have its own token
 * Optional: pieces discussing arguments for _Bitcoin_, generally as a decentralized store of value:
-  * [Bitcoin for the open-minded skeptic](https://www.matthuang.com/bitcoin_for_the_open_minded_skeptic) (Matt Huang, 2020)
-  * [7 things to read about bitcoin](https://www.paradigm.xyz/2020/05/7-things-to-read-about-bitcoin-for-institutional-investors/) (Matt Huang, 2020)
+  * [Bitcoin for the open-minded skeptic](https://www.matthuang.com/bitcoin_for_the_open_minded_skeptic) (2020)
+  * [7 things to read about bitcoin](https://www.paradigm.xyz/2020/05/7-things-to-read-about-bitcoin-for-institutional-investors/) (2020)
 
 _More: see in-depth page: [Why](Why.md)_
 
@@ -74,9 +74,6 @@ and how smart contracts (pioneered by Ethereum) work.
     * Vitalik Buterin's original whitepaper building on bitcoin to get smartcontracts; easier to read than the
       Bitcoin whitepaper; also happens to be good explanation of _Bitcoin_
   * OR for another clear description, see [How Ethereum and Smart Contracts work](https://vas3k.com/blog/ethereum/)
-* Optional:
-  * [Tendermint: Byzantine Fault Tolerance](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf)
-    * Overview of Byzantine Fault Tolerant algorithms and how proof of stake chains can work, in the form of a masters thesis from the co-founder of Cosmos.
 
 DeFi primitives
 ===========================
@@ -84,16 +81,16 @@ _In-depth page: [DeFi](DeFi.md)_
 
 Next, let's try to understand the major kinds of financial dApps on the blockchain. 
 Although there are many types, we'd say the two most common are:
-1. Lending protocols (decentralized banks, i.e. smart contracts where you can loan your assets for yield, or
-   do collateralized borrows (paying yield to borrow)).  Example: Aave
-2. Decentralized exchanges (most commonly Automated Market Makers (AMMs), which are two pools of 
-   assets that allow swapping from one asset to the other).  Example: Uniswap
+1. **Lending protocol** (a decentralized bank, i.e. a smart contract where you can loan your assets for yield, or
+   do borrow while paying interest).  Example: Aave
+2. **Decentralized exchange** (most commonly an Automated Market Maker (AMM), a smart contract with two pools of 
+   assets that allows swapping from one asset to the other).  Example: Uniswap
 
 A third, which can be thought of as a competitor to (1) of sorts, is:
-3. Decentralized stablecoin issuer (a protocol allowing you to deposit assets (e.g. Eth)
-   and borrow a decentralized stablecoin (minted by the protocol) against it).  
-   We say that it is a competitor of sorts to (1) where the lender is the protocol. 
-   Example: MakerDAO
+
+3. **Decentralized stablecoin issuer** (a protocol allowing you to deposit assets (e.g. Eth)
+   and borrow a decentralized stablecoin (minted by the protocol) against it).  We say that it is a
+   competitor of sorts to (1) where the lender is the protocol.  Example: MakerDAO
 
 Initial reading material on these categories:
 * Lending protocols
@@ -112,10 +109,8 @@ Initial reading material on these categories:
     description of MakerDAO and Dai, the stablecoin it issues
 * Other essential reading:
   * [Bridges](https://blog.makerdao.com/what-are-blockchain-bridges-and-why-are-they-important-for-defi/)
-  * [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/)
-    * explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
 
-For much more, see our [in-depth page](DeFi.md)
+For much more, see our [in-depth page on DeFi](DeFi.md)
 
 NFTs & digital identity
 ===========================
@@ -126,13 +121,37 @@ _In-depth page: [NFT](NFT.md)_
 DAOs / Governance
 ===================
 _In-depth page: [DAO](DAO.md)_
-* [Beginner's guide to DAOs](https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o) -
-  (Mar 2021) Linda Xie provides examples of what DAOs can do (e.g. shared ownership of a valuable asset, governance)
-* [The DAO of DAOs](https://www.notboring.co/p/the-dao-of-daos-5b9)
+* [Beginner's guide to DAOs](https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o) (Mar 2021) 
+  * examples of what DAOs can do (e.g. shared ownership of a valuable asset, governance)
+* [The DAO of DAOs](https://www.notboring.co/p/the-dao-of-daos-5b9) (Mar 2021)
+
+Byzantine Fault Tolerance and Proof-of-Stake algos
+===================================================
+At this point, we'd recommend learning about alternative smart contract blockchains.
+
+A fundamental design decision in blockchains is the mechanism by which block producers (miners
+in Bitcoin and Eth 1.0) come to consensus on the next block.  This problem of doing so in a
+distributed system with a variety of actors--some of whom may be sending intentionally confusing
+or destabilizing messages to their peers--is the key to establishing consensus and progressing the
+blockchain.
+
+Bitcoin and Eth 1.0 accomplish this by proof of work ("Nakamoto consensus"),
+but most other blockchains use variants of a different family of algorithms referred to as 
+**Byzantine Fault Tolerant (BFT)** algorithms.
+
+* [Understanding Blockchain Fundamentals: Byzantine Fault Tolerance](https://medium.com/loom-network/understanding-blockchain-fundamentals-part-1-byzantine-fault-tolerance-245f46fe8419)
+* [Nakamoto Consensus vs BFT](https://medium.com/@yaoshiang/the-interplay-of-nakamoto-consensus-and-byzantine-fault-tolerance-9aeed9d102f5)
+* [Tendermint: Byzantine Fault Tolerance](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf)
+  * Overview of BFT algorithms and how proof of stake chains can work, in the form of a masters thesis from the co-founder of Cosmos.
 
 L1s
-===============
+=====
+
 _In-depth page: [L1](L1)_
+
+At this point you can dig deeper into different L1 blockchains.  See in-depth pages below:
+
+* Historical/academic background: [L1/README.md](L1/README.md)_
 * [Bitcoin](L1/Bitcoin.md)
 * [Ethereum](L1/Ethereum.md)
 * [Solana](L1/Solana.md)
@@ -141,6 +160,7 @@ _In-depth page: [L1](L1)_
 * [Polkadot](L1/Polkadot.md)
 * [Polygon](L1/Polygon.md)
 * [Cosmos](L1/Cosmos.md)
+
 
 L2s
 ===============
@@ -154,6 +174,7 @@ _In-depth page: [L2](L2.md)_
 * [Optimistic rollups vs ZK-rollups](https://limechain.tech/blog/optimistic-rollups-vs-zk-rollups/) -
   a recent assessment of the state of various rollup projects
 
+
 Trading mechanics
 ===============
 _In-depth page: [TradingDynamics](TradingDynamics.md)_
@@ -164,7 +185,6 @@ _In-depth page: [MEV/Arbitrage](MEV.md)_
 Smart contract programming
 ============================
 _In-depth page: [Development](Dev)_
-
 
 
 Tools/Analytics
