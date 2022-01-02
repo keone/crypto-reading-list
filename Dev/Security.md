@@ -35,6 +35,7 @@ from previous failures.
 ### Re-entrancy
 Re-entrancy is a famous and common issue where the attacker can unexpectedly recursively call a function multiple times,
 to get the contract's state variables into an unexpected state.
+
 * For an overview, see [Preventing re-entrancy attacks: lessons from history](https://medium.com/amber-group/preventing-re-entrancy-attacks-lessons-from-history-c2d96480fac3)
 * [Exploiting uniswap from reentrancy to actual profit](https://blog.openzeppelin.com/exploiting-uniswap-from-reentrancy-to-actual-profit/) (July 2019)
   * Clear explanation of reentrancy vulnerability on Uniswap introduced by ERC777.
@@ -94,9 +95,10 @@ protocols that depend on on-chain oracles for pricing should be especially cogni
   * mechanical flaw in calculation of LP share value in a synthetic asset protocol
 
 ### Bridge attacks
-* Bridges are complex because they involve multiple chains, and interaction with a third party.
-  Also, from the perspective of a single chain, transfers to that chain just involve unlocking
-  tokens (or minting claim tokens) from the bridge contract.
+Bridges are complex because they involve multiple chains, and interaction with a third party.
+Also, from the perspective of a single chain, transfers to that chain just involve unlocking
+tokens (or minting claim tokens) from the bridge contract.
+
 * [Poly network hack](https://slowmist.medium.com/the-analysis-and-q-a-of-poly-network-being-hacked-8112a35beb39) (Aug 2021)
   * more commentary [here](https://mudit.blog/poly-network-largest-crypto-hack/)
 * [Polygon PoS bridge withdrawal bug](https://medium.com/immunefi/polygon-double-spend-bug-fix-postmortem-2m-bounty-5a1db09db7f1) (Oct 2021)
@@ -119,7 +121,8 @@ protocols that depend on on-chain oracles for pricing should be especially cogni
     tokens via MetaMask.
 
 ### Logic bugs
-* Arguably all bugs are logic bugs, but some seem like pure logic issues...
+Arguably all bugs are logic bugs, but some seem like pure logic issues...
+
 * [Compound overdistribution of governance token](https://twitter.com/Mudit__Gupta/status/1443454935639609345?t=sznwoTmp3KMDffaI1vpINA&s=19) (Sep 2021)
   * (see also [this](https://cybavo.medium.com/defi-protocol-compound-suffers-a-90m-reverse-rugpull-after-1-letter-bug-6168071497e2))
 * [Popsicle Finance exploit](https://twitter.com/Mudit__Gupta/status/1422797923037814786?s=20)

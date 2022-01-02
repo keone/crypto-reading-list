@@ -33,44 +33,89 @@ Contents
 
 Why is crypto important?
 ===========================
-* [Why decentralization matters](https://cdixon.org/2018/02/18/why-decentralization-matters) (Chris Dixon, 2018) -
-  discusses the pattern of new technology progressing from innovation to extraction (from cooperation with their 
-  ecosystem to eventual competition). For example consider Apple's transition from early days of encouraging 
-  developers to build on iOS, to now charging 30% on all in-store purchases.
-  Discusses how crypto solves this by aligning the network with its participants.
-* [Bitcoin for the open-minded skeptic](https://www.matthuang.com/bitcoin_for_the_open_minded_skeptic) (Matt Huang, 2020)
-* [7 things to read about bitcoin](https://www.paradigm.xyz/2020/05/7-things-to-read-about-bitcoin-for-institutional-investors/) (Matt Huang, 2020)
-* [Crypto tokens: a breakthrough in open design](https://cdixon.org/2017/05/27/crypto-tokens-a-breakthrough-in-open-network-design) (Chris Dixon, 2017) -
-  tokens as an enabler for alignment between networks and their participants
-* [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) (Hasu, Dec 2020) -
-  noted researcher Hasu weighs in on the merits of protocol tokens, during a time when many cynics questioned the need for each project to have its own token
-* [How composability unlocks crypto](https://future.a16z.com/how-composability-unlocks-crypto-and-everything-else/) (Linda Xie, June 2021)
+We'd recommend starting your exploration by trying to understand what problems crypto is trying to solve.
+
+In a few words, we'd say it is:
+* enabling a decentralized ledger-based currency system
+  * decentralized means, extremely difficult for bad actors to forge transactions taking your holdings
+* enabling a decentralized network of computation / decentralized state transition machine
+  * decentralized means, extremely difficult for bad actors for enact state changes not defined in sourcecode
+* enabling an open network of APIs that can be leveraged to build increasingly advanced apps
+* enabling an incentive model for these open networks to grow via crypto tokens
+
+Here's the list:
+* [Crypto tokens: a breakthrough in open design](https://cdixon.org/2017/05/27/crypto-tokens-a-breakthrough-in-open-network-design) (Chris Dixon, 2017)
+  * tokens as an enabler for alignment between networks and their participants
+* [Why decentralization matters](https://cdixon.org/2018/02/18/why-decentralization-matters) (Chris Dixon, 2018)
+  * discusses the pattern of new technology progressing from innovation to extraction (from cooperation with their 
+    ecosystem to eventual competition). For example consider Apple's transition from early days of encouraging 
+    developers to build on iOS, to now charging 30% on all in-store purchases.
+    Discusses how crypto solves this by aligning the network with its participants.
+* [The true power of DeFi composability](https://medium.com/coinmonks/the-true-power-of-defi-composability-14fe8355e0d0) (Apr 2021)
+* [Why I have changed my mind on tokens](https://insights.deribit.com/market-research/why-i-have-changed-my-mind-on-tokens/) (Hasu, Dec 2020)
+  * noted researcher Hasu weighs in on the merits of protocol tokens, during a time when many cynics questioned the need for each project to have its own token
+* Optional: pieces discussing arguments for _Bitcoin_, generally as a decentralized store of value:
+  * [Bitcoin for the open-minded skeptic](https://www.matthuang.com/bitcoin_for_the_open_minded_skeptic) (Matt Huang, 2020)
+  * [7 things to read about bitcoin](https://www.paradigm.xyz/2020/05/7-things-to-read-about-bitcoin-for-institutional-investors/) (Matt Huang, 2020)
+
+_More: see in-depth page: [Why](Why.md)_
 
 Blockchain mechanics & innovations
 ====================================
-* [Bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf) (2009)
-* [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/) (2013) -
-  describing Bitcoin's mechanics, building it up from first principles
-* [Ethereum whitepaper](https://ethereum.org/en/whitepaper/) -
-  building on bitcoin to get smartcontracts; also a good explanation of _Bitcoin_
-* [Tendermint: Byzantine Fault Tolerance](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf) -
-  Overview of Byzantine Fault Tolerant algorithms and how proof of stake chains can work.
+We think it's essential reading to understand how bitcoin works,
+and how smart contracts (pioneered by Ethereum) work.
+
+* Bitcoin:
+  * [How the Bitcoin protocol actually works](https://michaelnielsen.org/ddi/how-the-bitcoin-protocol-actually-works/) (2013)
+    * describing Bitcoin's mechanics, building it up from first principles
+  * OR for fundamentalists, see the [Bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf) (2009)
+* Ethereum:
+  * [Ethereum whitepaper](https://ethereum.org/en/whitepaper/)
+    * Vitalik Buterin's original whitepaper building on bitcoin to get smartcontracts; easier to read than the
+      Bitcoin whitepaper; also happens to be good explanation of _Bitcoin_
+  * OR for another clear description, see [How Ethereum and Smart Contracts work](https://vas3k.com/blog/ethereum/)
+* Optional:
+  * [Tendermint: Byzantine Fault Tolerance](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf)
+    * Overview of Byzantine Fault Tolerant algorithms and how proof of stake chains can work, in the form of a masters thesis from the co-founder of Cosmos.
 
 DeFi primitives
 ===========================
 _In-depth page: [DeFi](DeFi.md)_
-* [A beginner's guide to DeFi](https://nakamoto.com/beginners-guide-to-defi/) (Linda Xie, Jan 2020)
-* [AMMs](https://medium.com/dragonfly-research/what-explains-the-rise-of-amms-7d008af1c399) (Haseeb Qureshi, Jul 2020) -
-  explaining the mechanics of the constant-product AMM popularized by Uniswap V2
-* [StableSwap AMMs](https://curve.fi/files/stableswap-paper.pdf) (2019) -
-  explaining another AMM formulation for stable pairs of assets, pioneered by Curve.fi
-* [Bridges](https://blog.makerdao.com/what-are-blockchain-bridges-and-why-are-they-important-for-defi/)
-* [Uniswap V3 whitepaper](https://uniswap.org/whitepaper-v3.pdf) -
-  explaining the 'concentrated liquidity' innovation in UniswapV3
-  (see also [Uniswap v3: The Universal AMM](https://www.paradigm.xyz/2021/06/uniswap-v3-the-universal-amm/)
-  for illustrations of UniV3 emulating specific other functions)
-* [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/) -
-  explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
+
+Next, let's try to understand the major kinds of financial dApps on the blockchain. 
+Although there are many types, we'd say the two most common are:
+1. Lending protocols (decentralized banks, i.e. smart contracts where you can loan your assets for yield, or
+   do collateralized borrows (paying yield to borrow)).  Example: Aave
+2. Decentralized exchanges (most commonly Automated Market Makers (AMMs), which are two pools of 
+   assets that allow swapping from one asset to the other).  Example: Uniswap
+
+A third, which can be thought of as a competitor to (1) of sorts, is:
+3. Decentralized stablecoin issuer (a protocol allowing you to deposit assets (e.g. Eth)
+   and borrow a decentralized stablecoin (minted by the protocol) against it).  
+   We say that it is a competitor of sorts to (1) where the lender is the protocol. 
+   Example: MakerDAO
+
+Initial reading material on these categories:
+* Lending protocols
+  * [Lending and borrowing in DeFi](https://finematics.com/lending-and-borrowing-in-defi-explained/) (Finematics, Nov 2020)
+* AMMs
+  * [AMMs](https://medium.com/dragonfly-research/what-explains-the-rise-of-amms-7d008af1c399) (Haseeb Qureshi, Jul 2020)
+    * explaining the mechanics of the constant-product AMM popularized by Uniswap V2
+  * [StableSwap AMMs](https://curve.fi/files/stableswap-paper.pdf) (2019)
+    * explaining another AMM formulation for stable pairs of assets, pioneered by Curve.fi
+  * [Uniswap V3 whitepaper](https://uniswap.org/whitepaper-v3.pdf)
+    * explaining the 'concentrated liquidity' innovation in UniswapV3
+    * see also [Uniswap v3: The Universal AMM](https://www.paradigm.xyz/2021/06/uniswap-v3-the-universal-amm/)
+      for illustrations of UniV3 emulating specific other functions
+* Decentralized stablecoin issuance
+  * [Wikipedia article on Dai](https://en.wikipedia.org/wiki/Dai_(cryptocurrency)) provides a good, terse 
+    description of MakerDAO and Dai, the stablecoin it issues
+* Other essential reading:
+  * [Bridges](https://blog.makerdao.com/what-are-blockchain-bridges-and-why-are-they-important-for-defi/)
+  * [Flash loans](https://hackingdistributed.com/2020/03/11/flash-loans/)
+    * explaining the flash loan concept pioneered by Aave, as well as how it's used in various arbitrage scenarios
+
+For much more, see our [in-depth page](DeFi.md)
 
 NFTs & digital identity
 ===========================
