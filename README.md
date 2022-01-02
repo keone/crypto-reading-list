@@ -1,14 +1,13 @@
 crypto reading list
 ====================
-_WIP; draft 2021-12-21_
 
 A curated list for getting up to speed on crypto and decentralized networks.
 
 The content on the toplevel page contains what we consider essential reading.
 Child pages contain deeper, topic-specific information to review afterward.
 
-The lists here are a work in progress.  Please open a PR/issue here or
-reach out to [crypto-research@jumptrading.com](mailto:crypto-research@jumptrading.com)
+The lists here are a **work in progress**.  We welcome any feedback or criticism!
+Please open a PR/issue here or reach out to [crypto-research@jumptrading.com](mailto:crypto-research@jumptrading.com)
 with any suggestions, or to report any errors.
 
 _Nothing in this repo constitutes financial or legal advice._
@@ -110,7 +109,7 @@ Initial reading material on these categories:
 * Other essential reading:
   * [Bridges](https://blog.makerdao.com/what-are-blockchain-bridges-and-why-are-they-important-for-defi/)
 
-For much more, see our [in-depth page on DeFi](DeFi.md)
+For much more, see our in-depth page on [DeFi](DeFi.md)
 
 NFTs & digital identity
 ===========================
@@ -151,7 +150,7 @@ _In-depth page: [L1](L1)_
 
 At this point you can dig deeper into different L1 blockchains.  See in-depth pages below:
 
-* Historical/academic background: [L1/README.md](L1/README.md)_
+* [Historical/academic background](L1/README.md)
 * [Bitcoin](L1/Bitcoin.md)
 * [Ethereum](L1/Ethereum.md)
 * [Solana](L1/Solana.md)
@@ -200,10 +199,8 @@ Check your understanding with _[these thought questions and exercises](Exercises
 Directories
 ===============
 _In-depth page: [Other Lists](OtherLists.md)_
-* [Skill tree](https://thedailyape.notion.site/Skill-Tree-f5d7691421024090b66f9b07f7384314) -
-  Darren Lau's minimal list of things to learn about crypto
-* [The Daily Ape - directory](https://thedailyape.notion.site/thedailyape/Directory-c96c0b6727c0433a962e897ef43efb7e) -
-  Darren Lau's excellent categorical directory
+* [The Daily Ape - skill tree](https://thedailyape.notion.site/Skill-Tree-f5d7691421024090b66f9b07f7384314)
+* [The Daily Ape - directory](https://thedailyape.notion.site/thedailyape/Directory-c96c0b6727c0433a962e897ef43efb7e)
 * [Pentacle](https://pentacle.ai/): directory of Ethereum, Solana, and NFT projects
 * [Everest.link](https://everest.link/) - project registry
 
